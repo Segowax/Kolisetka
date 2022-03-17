@@ -1,14 +1,19 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 namespace Kolisetka.Application
 {
     public static class ApplicationServicesRegistration
     {
-        public static void ConfigureApplicationServices(this IServiceCollection services)
+        public static IServiceCollection ConfigureApplicationServices(this IServiceCollection services)
         {
-            // It register all automapper profiles!
+            // It register all automapper profiles at once!
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            // MediatR
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            return services;
         }
     }
 }

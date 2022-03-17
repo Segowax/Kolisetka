@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{07197BDE-812C-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kolisetka.Domain", "Kolisetka.Domain\Kolisetka.Domain.csproj", "{4C0342A7-E648-4897-BBE1-4DBE030D1473}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kolisetka.Application", "Kolisetka.Application\Kolisetka.Application.csproj", "{8F4ED147-EED6-4F3E-B275-BD506D73F43E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kolisetka.Application", "Kolisetka.Application\Kolisetka.Application.csproj", "{8F4ED147-EED6-4F3E-B275-BD506D73F43E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
