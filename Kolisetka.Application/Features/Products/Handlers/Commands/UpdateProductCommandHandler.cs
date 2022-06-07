@@ -1,7 +1,11 @@
 ﻿using AutoMapper;
+using Kolisetka.Application.DTOs;
+using Kolisetka.Application.DTOs.Validators;
 using Kolisetka.Application.Features.Products.Requests.Commands;
 using Kolisetka.Application.Persistence.Contracts;
+using Kolisetka.Domain;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -20,8 +24,13 @@ namespace Kolisetka.Application.Features.Products.Handlers.Commands
 
         public async Task<Unit> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
-            var product = await _productRepository.GetAsync(request.ProductDto.Id);
-            _mapper.Map(request.ProductDto, product);
+            var validator = new ProductUpdateValidator(_productRepository);
+            var validatorResult = await validator.ValidateAsync(request.ProductDto);
+
+            if (!validatorResult.IsValid)
+                throw new Exception();
+
+            var product = _mapper.Map<ProductDto, Product>(request.ProductDto);
             await _productRepository.UpdateAsync(product);
 
             return Unit.Value;

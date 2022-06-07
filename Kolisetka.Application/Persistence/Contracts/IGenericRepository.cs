@@ -9,6 +9,7 @@ namespace Kolisetka.Application.Persistence.Contracts
         Task<IReadOnlyList<T>> GetAllAsync();
         Task AddAsync(T entity);
         Task UpdateAsync(T entity);
-        Task DeleteAsync(T entity);    
+        Task DeleteAsync(T entity);
+        Task<bool> IsExist(int id);
     }
 }
