@@ -3,7 +3,7 @@ using Kolisetka.Application.Persistence.Contracts;
 
 namespace Kolisetka.Application.DTOs.Validators
 {
-    class ProductUpdateValidator : AbstractValidator<ProductDto>
+    class ProductUpdateValidator : AbstractValidator<ProductUpdateDto>
     {
         private readonly IProductRepository _productRepository;
 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Kolisetka.Application.Features.Products.Requests.Queries
 {
-    public class GetProductsListRequest : IRequest<IReadOnlyList<ProductDto>>
+    public class GetProductsListRequest : IRequest<IReadOnlyList<ProductUpdateDto>>
     {
     }
 }

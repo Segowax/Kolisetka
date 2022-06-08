@@ -3,7 +3,7 @@ using Kolisetka.Domain;
 
 namespace Kolisetka.Application.DTOs
 {
-    public class ProductDto : BaseDto
+    public class ProductUpdateDto : BaseDto
     {
         public string Name { get; set; }
         public string Description { get; set; }

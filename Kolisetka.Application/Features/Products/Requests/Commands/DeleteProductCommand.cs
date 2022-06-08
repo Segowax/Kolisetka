@@ -5,6 +5,6 @@ namespace Kolisetka.Application.Features.Products.Requests.Commands
 {
     public class DeleteProductCommand : IRequest
     {
-        public int Id { get; set; }
+        public ProductDeleteDto ProductDto { get; set; }
     }
 }
