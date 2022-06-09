@@ -1,9 +1,8 @@
-﻿using Kolisetka.Application.DTOs.Common;
-using Kolisetka.Domain;
+﻿using Kolisetka.Domain;
 
-namespace Kolisetka.Application.DTOs
+namespace Kolisetka.Application.DTOs.DtoProduct
 {
-    public class ProductUpdateDto : BaseDto
+    public class ProductCreateDto
     {
         public string Name { get; set; }
         public string Description { get; set; }
