@@ -19,9 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kolisetka.Domain", "Koliset
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kolisetka.Application", "Kolisetka.Application\Kolisetka.Application.csproj", "{8F4ED147-EED6-4F3E-B275-BD506D73F43E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kolisetka.Infrastructure", "Kolisetka.Infrastructure\Kolisetka.Infrastructure.csproj", "{D96AA500-0786-4396-9EB3-40C7F74D44AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kolisetka.Infrastructure", "Kolisetka.Infrastructure\Kolisetka.Infrastructure.csproj", "{D96AA500-0786-4396-9EB3-40C7F74D44AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kolisetka.Persistence", "Kolisetka.Persistence\Kolisetka.Persistence.csproj", "{1786FEE0-7487-4B5F-B1B4-86D7637BFE9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kolisetka.Persistence", "Kolisetka.Persistence\Kolisetka.Persistence.csproj", "{1786FEE0-7487-4B5F-B1B4-86D7637BFE9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

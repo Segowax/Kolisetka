@@ -1,4 +1,4 @@
-﻿using Kolisetka.Application.DTOs;
+﻿using Kolisetka.Application.DTOs.DtoProduct;
 using MediatR;
 
 namespace Kolisetka.Application.Features.Products.Requests.Queries

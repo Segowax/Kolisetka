@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Kolisetka.Application.DTOs;
+using Kolisetka.Application.DTOs.DtoProduct;
 using Kolisetka.Application.Features.Products.Requests.Queries;
 using Kolisetka.Application.Persistence.Contracts;
 using MediatR;
