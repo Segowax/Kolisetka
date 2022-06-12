@@ -2,7 +2,7 @@
 using Kolisetka.Application.DTOs.Validators;
 using Kolisetka.Application.Exceptions;
 using Kolisetka.Application.Features.Products.Requests.Commands;
-using Kolisetka.Application.Persistence.Contracts;
+using Kolisetka.Application.Contracts.Persistence;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;

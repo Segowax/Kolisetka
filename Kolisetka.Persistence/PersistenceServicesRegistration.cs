@@ -1,4 +1,4 @@
-﻿using Kolisetka.Application.Persistence.Contracts;
+﻿using Kolisetka.Application.Contracts.Persistence;
 using Kolisetka.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

@@ -1,4 +1,4 @@
-﻿using Kolisetka.Application.Persistence.Contracts;
+﻿using Kolisetka.Application.Contracts.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;

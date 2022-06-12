@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using Kolisetka.Application.DTOs.DtoProduct;
-using Kolisetka.Application.Persistence.Contracts;
+using Kolisetka.Application.Contracts.Persistence;
 
 namespace Kolisetka.Application.DTOs.Validators
 {
