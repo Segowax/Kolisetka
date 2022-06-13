@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kolisetka.Infrastructure", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kolisetka.Persistence", "Kolisetka.Persistence\Kolisetka.Persistence.csproj", "{1786FEE0-7487-4B5F-B1B4-86D7637BFE9A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kolisetka.Api", "Kolisetka.Api\Kolisetka.Api.csproj", "{EE9DD947-1A91-4DAA-B915-02D6B589183B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{1786FEE0-7487-4B5F-B1B4-86D7637BFE9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1786FEE0-7487-4B5F-B1B4-86D7637BFE9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1786FEE0-7487-4B5F-B1B4-86D7637BFE9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE9DD947-1A91-4DAA-B915-02D6B589183B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE9DD947-1A91-4DAA-B915-02D6B589183B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE9DD947-1A91-4DAA-B915-02D6B589183B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE9DD947-1A91-4DAA-B915-02D6B589183B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +64,7 @@ Global
 		{8F4ED147-EED6-4F3E-B275-BD506D73F43E} = {79A3D31B-9279-4840-A080-2BBD4C1CF6F0}
 		{D96AA500-0786-4396-9EB3-40C7F74D44AB} = {FE882F99-C8BF-4368-9BB7-88A16A99BC59}
 		{1786FEE0-7487-4B5F-B1B4-86D7637BFE9A} = {FE882F99-C8BF-4368-9BB7-88A16A99BC59}
+		{EE9DD947-1A91-4DAA-B915-02D6B589183B} = {39D73706-0A39-43D2-AE98-13F1F7F71E3C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4CAA9CCD-42A2-4912-B3AF-62E1D1506935}
