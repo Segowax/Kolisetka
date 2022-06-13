@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Kolisetka.Application.DTOs;
+using Kolisetka.Application.DTOs.DtoProduct;
 using Kolisetka.Domain;
 
 namespace Kolisetka.Application.Profiles

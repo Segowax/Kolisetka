@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Kolisetka.Application.Persistence.Contracts
+namespace Kolisetka.Application.Contracts.Persistence
 {
     public interface IGenericRepository<T> where T : class
     {
