@@ -23,13 +23,13 @@ namespace Kolisetka.Application.Features.Products.Handlers.Commands
         public async Task<Unit> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
             var validator = new ProductDeleteValidator(_productRepository);
-            var validationResult = await validator.ValidateAsync(request.ProductDto);
+            var validationResult = await validator.ValidateAsync(request.ProductDeleteDto);
 
             if (!validationResult.IsValid)
                 throw new ValidationException(validationResult);
 
-            var product = await _productRepository.GetAsync(request.ProductDto.Id);
-            _mapper.Map(request.ProductDto, product);
+            var product = await _productRepository.GetAsync(request.ProductDeleteDto.Id);
+            _mapper.Map(request.ProductDeleteDto, product);
 
             await _productRepository.DeleteAsync(product);
 

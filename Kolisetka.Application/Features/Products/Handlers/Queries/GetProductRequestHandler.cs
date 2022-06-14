@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Kolisetka.Application.Features.Products.Handlers.Queries
 {
-    public class GetProductRequestHandler : IRequestHandler<GetProductRequest, ProductUpdateDto>
+    public class GetProductRequestHandler : IRequestHandler<GetProductRequest, ProductGetDto>
     {
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
@@ -20,11 +20,11 @@ namespace Kolisetka.Application.Features.Products.Handlers.Queries
             _mapper = mapper;
         }
 
-        public async Task<ProductUpdateDto> Handle(GetProductRequest request, CancellationToken cancellationToken)
+        public async Task<ProductGetDto> Handle(GetProductRequest request, CancellationToken cancellationToken)
         {
             var product = await _productRepository.GetAsync(request.Id);
 
-            return _mapper.Map<ProductUpdateDto>(product);
+            return _mapper.Map<ProductGetDto>(product);
         }
     }
 }

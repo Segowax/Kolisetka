@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Kolisetka.Application.Features.Products.Requests.Queries
 {
-    public class GetProductRequest : IRequest<ProductUpdateDto>
+    public class GetProductRequest : IRequest<ProductGetDto>
     {
         public int Id { get; set; }
     }
