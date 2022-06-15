@@ -9,9 +9,10 @@ namespace Kolisetka.Application.Profiles
         public MappingProfile()
         {
             #region Product Mapping
-            CreateMap<Product, ProductUpdateDto>().ReverseMap();
             CreateMap<Product, ProductCreateDto>().ReverseMap();
             CreateMap<Product, ProductDeleteDto>().ReverseMap();
+            CreateMap<Product, ProductGetDto>().ReverseMap();
+            CreateMap<Product, ProductUpdateDto>().ReverseMap();
             #endregion
         }
     }
