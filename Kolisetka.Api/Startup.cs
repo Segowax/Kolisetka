@@ -30,7 +30,7 @@ namespace Kolisetka.Api
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Kolisetka.Api", Version = "v1" });
+                c.SwaggerDoc("kolisetka", new OpenApiInfo { Title = "Kolisetka.Api", Version = "v1.0.0"});
             });
 
             services.AddCors(options =>
@@ -49,7 +49,7 @@ namespace Kolisetka.Api
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Kolisetka.Api v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/kolisetka/swagger.json", "Kolisetka.Api v1"));
             }
 
             app.UseHttpsRedirection();

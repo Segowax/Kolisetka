@@ -17,7 +17,7 @@ namespace Kolisetka.Application.DTOs.Validators
                 .MustAsync(async (id, token) =>
                 {
                     var isProductExist = await _productRepository.IsExist(id);
-                    return !isProductExist;
+                    return isProductExist;
                 }).WithMessage("{PropertyName} does not exist.");
         }
     }

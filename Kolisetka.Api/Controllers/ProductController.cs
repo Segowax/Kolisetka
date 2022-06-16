@@ -57,8 +57,8 @@ namespace Kolisetka.Api.Controllers
             return NoContent();
         }
 
-        // DELETE api/<ProductController>/5
-        [HttpDelete("{id}")]
+        // DELETE api/<ProductController>
+        [HttpDelete]
         public async Task<ActionResult> Delete(ProductDeleteDto product)
         {
             await _mediator.Send(new DeleteProductCommand { ProductDeleteDto = product });
