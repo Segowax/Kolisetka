@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace Kolisetka.Application.Features.Products.Handlers.Commands
 {
-    public class CreateProductRequestHandler : IRequestHandler<CreateProductCommand>
+    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
     {
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
 
-        public CreateProductRequestHandler(IProductRepository productRepository, IMapper mapper)
+        public CreateProductCommandHandler(IProductRepository productRepository, IMapper mapper)
         {
             _productRepository = productRepository;
             _mapper = mapper;
