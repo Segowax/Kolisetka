@@ -5,6 +5,6 @@ namespace Kolisetka.Application.Features.Products.Requests.Commands
 {
     public class CreateProductCommand : IRequest
     {
-        public ProductCreateDto CreateProductDto { get; set; }
+        public ProductCreateDto ProductCreateDto { get; set; }
     }
 }

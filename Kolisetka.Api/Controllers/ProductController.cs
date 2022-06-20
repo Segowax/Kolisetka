@@ -43,7 +43,7 @@ namespace Kolisetka.Api.Controllers
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] ProductCreateDto product)
         {
-            await _mediator.Send(new CreateProductCommand { CreateProductDto = product });
+            await _mediator.Send(new CreateProductCommand { ProductCreateDto = product });
 
             return NoContent();
         }

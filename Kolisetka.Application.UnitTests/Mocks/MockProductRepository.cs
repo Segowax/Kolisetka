@@ -46,10 +46,36 @@ namespace Kolisetka.Application.UnitTests.Mocks
             };
             var mockRepo = new Mock<IProductRepository>();
 
+            mockRepo.Setup(r => r.GetAsync(It.IsAny<int>())).ReturnsAsync((int id) =>
+            {
+                return products.Find(product => product.Id == id);
+            });
             mockRepo.Setup(r => r.GetAllAsync()).ReturnsAsync(products);
+            mockRepo.Setup(r => r.IsExist(It.IsAny<int>())).ReturnsAsync((int id) =>
+            {
+                if (products.Find(product => product.Id == id) is null) return false;
+                else return true;
+            });
             mockRepo.Setup(r => r.AddAsync(It.IsAny<Product>())).Returns((Product product) =>
             {
                 products.Add(product);
+
+                return Task.CompletedTask;
+            });
+            mockRepo.Setup(r => r.UpdateAsync(It.IsAny<Product>())).Returns((Product updatedProduct) =>
+            {
+                foreach (var product in products)
+                {
+                    if (product.Id == updatedProduct.Id)
+                    {
+                        product.Category = updatedProduct.Category;
+                        product.DateCreated = updatedProduct.DateCreated;
+                        product.DateUpdated = updatedProduct.DateUpdated;
+                        product.Description = updatedProduct.Description;
+                        product.Name = updatedProduct.Name;
+                        product.Price = updatedProduct.Price;
+                    }
+                }
 
                 return Task.CompletedTask;
             });

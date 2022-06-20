@@ -22,7 +22,7 @@ namespace Kolisetka.Application.DTOs.Validators
 
             RuleFor(prop => prop.Category)
                 .NotNull().WithMessage("{PropertyName} is required.")
-                .IsInEnum().WithMessage("{PropertyName} has to be included within \"Category\" enum."); ;
+                .IsInEnum().WithMessage("{PropertyName} has to be included within \"Category\" enum.");
 
             RuleFor(prop => prop.Description)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
@@ -37,7 +37,7 @@ namespace Kolisetka.Application.DTOs.Validators
             RuleFor(prop => prop.Price)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull().WithMessage("{PropertyName} is required.")
-                .GreaterThan(0).WithMessage("{PropertyName} has to be grater than 0."); ;
+                .GreaterThan(0).WithMessage("{PropertyName} has to be grater than 0.");
         }
     }
 }

@@ -46,7 +46,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
         public async Task Valid_Product_Added()
         {
             await _handler.Handle
-                (new CreateProductCommand() { CreateProductDto = _productDto }, CancellationToken.None);
+                (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None);
 
             var products = await _mockRepo.Object.GetAllAsync();
             products.Count.ShouldBe(4);
@@ -59,28 +59,28 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             _productDto.Price = 10.002m;
             ValidationException ex = await Should.ThrowAsync<ValidationException>
                 (async () => await _handler.Handle
-                    (new CreateProductCommand() { CreateProductDto = _productDto }, CancellationToken.None));
+                    (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None));
 
             // invalid category
             _productDto.Price = 10.00m;
             _productDto.Category = (Category)3;
             ex = await Should.ThrowAsync<ValidationException>
                 (async () => await _handler.Handle
-                    (new CreateProductCommand() { CreateProductDto = _productDto }, CancellationToken.None));
+                    (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None));
 
             // invalid name
             _productDto.Category = Category.Food;
             _productDto.Name = null;
             ex = await Should.ThrowAsync<ValidationException>
                 (async () => await _handler.Handle
-                    (new CreateProductCommand() { CreateProductDto = _productDto }, CancellationToken.None));
+                    (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None));
 
             // invalid description
             _productDto.Name = "Zapiekanka";
             _productDto.Description = null;
             ex = await Should.ThrowAsync<ValidationException>
                 (async () => await _handler.Handle
-                    (new CreateProductCommand() { CreateProductDto = _productDto }, CancellationToken.None));
+                    (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None));
 
             var products = await _mockRepo.Object.GetAllAsync();
             products.Count.ShouldBe(3);
