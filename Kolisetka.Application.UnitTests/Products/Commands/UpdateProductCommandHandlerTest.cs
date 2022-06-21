@@ -53,6 +53,11 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             products.Count.ShouldBe(3);
 
             var updatedProduct = await _mockRepo.Object.GetAsync(2);
+            updatedProduct.Category.ShouldBe(Category.Food);
+            updatedProduct.DateCreated.ShouldBe(new DateTime(2022, 6, 1));
+            updatedProduct.DateUpdated.ShouldBe(new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day, DateTime.UtcNow.Hour, DateTime.UtcNow.Minute, 0));
+            updatedProduct.Description.ShouldBe("Najsmaczniejsza golonka na całym Kozanownie!");
+            updatedProduct.Name.ShouldBe("Golonka");
             updatedProduct.Price.ShouldBe(10.00m);
         }
     }

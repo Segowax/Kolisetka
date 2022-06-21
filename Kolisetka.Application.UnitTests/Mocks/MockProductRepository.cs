@@ -53,8 +53,7 @@ namespace Kolisetka.Application.UnitTests.Mocks
             mockRepo.Setup(r => r.GetAllAsync()).ReturnsAsync(products);
             mockRepo.Setup(r => r.IsExist(It.IsAny<int>())).ReturnsAsync((int id) =>
             {
-                if (products.Find(product => product.Id == id) is null) return false;
-                else return true;
+                return products.Find(product => product.Id == id) != null;
             });
             mockRepo.Setup(r => r.AddAsync(It.IsAny<Product>())).Returns((Product product) =>
             {
@@ -70,7 +69,7 @@ namespace Kolisetka.Application.UnitTests.Mocks
                     {
                         product.Category = updatedProduct.Category;
                         product.DateCreated = updatedProduct.DateCreated;
-                        product.DateUpdated = updatedProduct.DateUpdated;
+                        product.DateUpdated = new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day, DateTime.UtcNow.Hour, DateTime.UtcNow.Minute, 0);
                         product.Description = updatedProduct.Description;
                         product.Name = updatedProduct.Name;
                         product.Price = updatedProduct.Price;
