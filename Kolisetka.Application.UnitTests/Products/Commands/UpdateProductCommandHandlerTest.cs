@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Kolisetka.Application.Contracts.Persistence;
 using Kolisetka.Application.DTOs.DtoProduct;
+using Kolisetka.Application.Exceptions;
 using Kolisetka.Application.Features.Products.Handlers.Commands;
 using Kolisetka.Application.Features.Products.Requests.Commands;
 using Kolisetka.Application.Profiles;
@@ -59,6 +60,44 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             updatedProduct.Description.ShouldBe("Najsmaczniejsza golonka na całym Kozanownie!");
             updatedProduct.Name.ShouldBe("Golonka");
             updatedProduct.Price.ShouldBe(10.00m);
+        }
+
+        [Fact]
+        public async Task Invalid_Product_Update()
+        {
+            // invalid Id
+            _productDto.Id = 5;
+            ValidationException ex = await Should.ThrowAsync<ValidationException>
+                (async () => await _handler.Handle
+                    (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None));
+
+            // invalid category
+            _productDto.Id = 2;
+            _productDto.Category = (Category)3;
+            ex = await Should.ThrowAsync<ValidationException>
+                (async () => await _handler.Handle
+                    (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None));
+
+            // invalid Description
+            _productDto.Category = Category.Food;
+            _productDto.Description = string.Empty;
+            ex = await Should.ThrowAsync<ValidationException>
+                (async () => await _handler.Handle
+                    (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None));
+
+            // invalid Name
+            _productDto.Description = "Najsmaczniejsza golonka na całym Kozanownie!";
+            _productDto.Name = "TooLongStringTooLongStringTooLongStringTooLongStringTooLongStringTooLongStringTooLongStringTooLongString";
+            ex = await Should.ThrowAsync<ValidationException>
+                (async () => await _handler.Handle
+                    (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None));
+
+            // invalid price
+            _productDto.Name = "Golonka";
+            _productDto.Price = 10.002m;
+            ex = await Should.ThrowAsync<ValidationException>
+                (async () => await _handler.Handle
+                    (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None));
         }
     }
 }
