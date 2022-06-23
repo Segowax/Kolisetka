@@ -78,6 +78,12 @@ namespace Kolisetka.Application.UnitTests.Mocks
 
                 return Task.CompletedTask;
             });
+            mockRepo.Setup(r => r.DeleteAsync(It.IsAny<Product>())).Returns((Product deletedProduct) =>
+            {
+                products.Remove(deletedProduct);
+
+                return Task.CompletedTask;
+            });
 
             return mockRepo;
         }
