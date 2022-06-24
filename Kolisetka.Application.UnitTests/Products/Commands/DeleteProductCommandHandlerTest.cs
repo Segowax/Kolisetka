@@ -6,7 +6,6 @@ using Kolisetka.Application.Features.Products.Handlers.Commands;
 using Kolisetka.Application.Features.Products.Requests.Commands;
 using Kolisetka.Application.Profiles;
 using Kolisetka.Application.UnitTests.Mocks;
-using Kolisetka.Domain;
 using Moq;
 using Shouldly;
 using System.Threading;
@@ -58,5 +57,17 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
                     (new DeleteProductCommand() { ProductDeleteDto = _productDto }, CancellationToken.None));
         }
 
+        [Fact]
+        public async Task Invalid_Product_Deleted()
+        {
+            // invalid Id
+            _productDto.Id = 10;
+            ValidationException ex = await Should.ThrowAsync<ValidationException>
+                (async () => await _handler.Handle
+                    (new DeleteProductCommand() { ProductDeleteDto = _productDto }, CancellationToken.None));
+
+            var products = await _mockRepo.Object.GetAllAsync();
+            products.Count.ShouldBe(3);
+        }
     }
 }
