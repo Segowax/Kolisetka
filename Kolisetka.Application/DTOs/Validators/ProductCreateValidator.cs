@@ -24,7 +24,8 @@ namespace Kolisetka.Application.DTOs.Validators
             RuleFor(prop => prop.Price)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull().WithMessage("{PropertyName} is required.")
-                .GreaterThan(0).WithMessage("{PropertyName} has to be grater than 0.");
+                .GreaterThan(0).WithMessage("{PropertyName} has to be grater than 0.")
+                .ScalePrecision(2,7).WithMessage("{PropertyName} is decimal value with scale 2 and precision 7.");
         }
     }
 }
