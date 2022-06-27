@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5E676BA6-EFA4-403D-9C2F-A47D801C6D5F}"
 EndProject
@@ -23,9 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kolisetka.Infrastructure", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kolisetka.Persistence", "Kolisetka.Persistence\Kolisetka.Persistence.csproj", "{1786FEE0-7487-4B5F-B1B4-86D7637BFE9A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kolisetka.Api", "Kolisetka.Api\Kolisetka.Api.csproj", "{EE9DD947-1A91-4DAA-B915-02D6B589183B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kolisetka.Application.UnitTests", "Kolisetka.Application.UnitTests\Kolisetka.Application.UnitTests.csproj", "{C83A5D73-C8A8-49DE-B6FC-E74AC1D4D7D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kolisetka.Application.UnitTests", "Kolisetka.Application.UnitTests\Kolisetka.Application.UnitTests.csproj", "{C83A5D73-C8A8-49DE-B6FC-E74AC1D4D7D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kolisetka.API", "Kolisetka.API\Kolisetka.API.csproj", "{248B30AF-710F-48FB-9ADA-96027747B7BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,14 +49,14 @@ Global
 		{1786FEE0-7487-4B5F-B1B4-86D7637BFE9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1786FEE0-7487-4B5F-B1B4-86D7637BFE9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1786FEE0-7487-4B5F-B1B4-86D7637BFE9A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EE9DD947-1A91-4DAA-B915-02D6B589183B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE9DD947-1A91-4DAA-B915-02D6B589183B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE9DD947-1A91-4DAA-B915-02D6B589183B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE9DD947-1A91-4DAA-B915-02D6B589183B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C83A5D73-C8A8-49DE-B6FC-E74AC1D4D7D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C83A5D73-C8A8-49DE-B6FC-E74AC1D4D7D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C83A5D73-C8A8-49DE-B6FC-E74AC1D4D7D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C83A5D73-C8A8-49DE-B6FC-E74AC1D4D7D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{248B30AF-710F-48FB-9ADA-96027747B7BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{248B30AF-710F-48FB-9ADA-96027747B7BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{248B30AF-710F-48FB-9ADA-96027747B7BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{248B30AF-710F-48FB-9ADA-96027747B7BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,8 +70,8 @@ Global
 		{8F4ED147-EED6-4F3E-B275-BD506D73F43E} = {79A3D31B-9279-4840-A080-2BBD4C1CF6F0}
 		{D96AA500-0786-4396-9EB3-40C7F74D44AB} = {FE882F99-C8BF-4368-9BB7-88A16A99BC59}
 		{1786FEE0-7487-4B5F-B1B4-86D7637BFE9A} = {FE882F99-C8BF-4368-9BB7-88A16A99BC59}
-		{EE9DD947-1A91-4DAA-B915-02D6B589183B} = {39D73706-0A39-43D2-AE98-13F1F7F71E3C}
 		{C83A5D73-C8A8-49DE-B6FC-E74AC1D4D7D4} = {74D18AF3-E368-47B3-A161-13F7AB675B1B}
+		{248B30AF-710F-48FB-9ADA-96027747B7BF} = {39D73706-0A39-43D2-AE98-13F1F7F71E3C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4CAA9CCD-42A2-4912-B3AF-62E1D1506935}
