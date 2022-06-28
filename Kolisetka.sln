@@ -25,7 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kolisetka.Persistence", "Ko
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kolisetka.Application.UnitTests", "Kolisetka.Application.UnitTests\Kolisetka.Application.UnitTests.csproj", "{C83A5D73-C8A8-49DE-B6FC-E74AC1D4D7D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kolisetka.API", "Kolisetka.API\Kolisetka.API.csproj", "{248B30AF-710F-48FB-9ADA-96027747B7BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kolisetka.API", "Kolisetka.API\Kolisetka.API.csproj", "{248B30AF-710F-48FB-9ADA-96027747B7BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kolisetka.MVC", "Kolisetka.MVC\Kolisetka.MVC.csproj", "{1A303DD8-FB31-4794-A8A4-69A6CDE73475}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{248B30AF-710F-48FB-9ADA-96027747B7BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{248B30AF-710F-48FB-9ADA-96027747B7BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{248B30AF-710F-48FB-9ADA-96027747B7BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A303DD8-FB31-4794-A8A4-69A6CDE73475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A303DD8-FB31-4794-A8A4-69A6CDE73475}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A303DD8-FB31-4794-A8A4-69A6CDE73475}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A303DD8-FB31-4794-A8A4-69A6CDE73475}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +78,7 @@ Global
 		{1786FEE0-7487-4B5F-B1B4-86D7637BFE9A} = {FE882F99-C8BF-4368-9BB7-88A16A99BC59}
 		{C83A5D73-C8A8-49DE-B6FC-E74AC1D4D7D4} = {74D18AF3-E368-47B3-A161-13F7AB675B1B}
 		{248B30AF-710F-48FB-9ADA-96027747B7BF} = {39D73706-0A39-43D2-AE98-13F1F7F71E3C}
+		{1A303DD8-FB31-4794-A8A4-69A6CDE73475} = {07197BDE-812C-4453-AF61-4BA6E8970ECB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4CAA9CCD-42A2-4912-B3AF-62E1D1506935}
