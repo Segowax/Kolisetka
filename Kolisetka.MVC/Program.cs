@@ -1,7 +1,12 @@
+using Kolisetka.MVC.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpClient<IClient, Client>
+    (cl => cl.BaseAddress = new Uri(builder.Configuration.GetSection("BaseAddress").GetValue<string>("Uri")));
 
 var app = builder.Build();
 
