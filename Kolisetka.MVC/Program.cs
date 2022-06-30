@@ -1,4 +1,7 @@
+using Kolisetka.MVC.Contracts;
 using Kolisetka.MVC.Services;
+using Kolisetka.MVC.Services.Base;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +10,9 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpClient<IClient, Client>
     (cl => cl.BaseAddress = new Uri(builder.Configuration.GetSection("BaseAddress").GetValue<string>("Uri")));
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddSingleton<ILocalStorageService, LocalStorageService>();
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
