@@ -1,17 +1,18 @@
 ﻿using AutoMapper;
 using Kolisetka.Application.DTOs.DtoProduct;
 using Kolisetka.Application.DTOs.Validators;
-using Kolisetka.Application.Exceptions;
 using Kolisetka.Application.Features.Products.Requests.Commands;
 using Kolisetka.Application.Contracts.Persistence;
 using Kolisetka.Domain;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using Kolisetka.Application.Responses;
+using System.Linq;
 
 namespace Kolisetka.Application.Features.Products.Handlers.Commands
 {
-    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
+    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, BaseCommandResponse>
     {
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
@@ -22,18 +23,30 @@ namespace Kolisetka.Application.Features.Products.Handlers.Commands
             _mapper = mapper;
         }
 
-        public async Task<Unit> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+        public async Task<BaseCommandResponse> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
+            var response = new BaseCommandResponse();
             var validator = new ProductCreateValidator();
             var validationResult = await validator.ValidateAsync(request.ProductCreateDto);
 
             if (!validationResult.IsValid)
-                throw new ValidationException(validationResult);
+            {
+                response.Success = false;
+                response.Message = "Product creation failed.";
+                response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).Distinct().ToList();
+
+                return response;
+            }
+            else
+            {
+                response.Success = true;
+                response.Message = "Product creation successful.";
+            }
 
             var product = _mapper.Map<ProductCreateDto, Product>(request.ProductCreateDto);
             await _productRepository.AddAsync(product);
 
-            return Unit.Value;
+            return response;
         }
     }
 }

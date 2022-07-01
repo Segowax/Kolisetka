@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Kolisetka.Application.DTOs.DtoProduct;
 using Kolisetka.Application.Contracts.Persistence;
+using Kolisetka.Application.Properties;
 
 namespace Kolisetka.Application.DTOs.Validators
 {
@@ -18,7 +19,7 @@ namespace Kolisetka.Application.DTOs.Validators
                 {
                     var isProductExist = await _productRepository.IsExist(id);
                     return isProductExist;
-                }).WithMessage("{PropertyName} does not exist.");
+                }).WithMessage(Resources.Product_Validator_NotExists);
         }
     }
 }
