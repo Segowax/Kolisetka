@@ -94,8 +94,17 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             response.Errors.Count.ShouldBe(1);
             response.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_InvalidEnum.Replace("{PropertyName}", nameof(_productDto.Category)));
 
-            // invalid description
+            // invalid description - null
             _productDto.Category = Category.Food;
+            _productDto.Description = null;
+            response = await _handler.Handle
+                (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
+            response.ShouldBeOfType<BaseCommandResponse>();
+            response.Success.ShouldBeFalse();
+            MyString = ApplicationProperties.Resources.Product_Validator_Required.Replace("{PropertyName}", nameof(_productDto.Description));
+            response.Errors[0].ShouldBe(MyString);
+
+            // invalid description - too long
             _productDto.Description = TestProperties.Resources.Test_TooLongString_1001;
             response = await _handler.Handle
                 (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
@@ -105,8 +114,19 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             MyString = MyString.Replace("{MaxLength}", "1000");
             response.Errors[0].ShouldBe(MyString);
 
-            // invalid name
+            // invalid name - null
             _productDto.Description = "Najsmaczniejsza golonka na całym Kozanownie!";
+            _productDto.Name = null;
+            response = await _handler.Handle
+                (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
+            response.ShouldBeOfType<BaseCommandResponse>();
+            response.Success.ShouldBeFalse();
+            response.Errors.ShouldNotBeNull();
+            response.Errors.Count.ShouldBe(1);
+            MyString = ApplicationProperties.Resources.Product_Validator_Required.Replace("{PropertyName}", nameof(_productDto.Name));
+            response.Errors[0].ShouldBe(MyString);
+
+            // invalid name - too long
             _productDto.Name = TestProperties.Resources.Test_TooLongString_101;
             response = await _handler.Handle
                 (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);

@@ -9,6 +9,8 @@ using Kolisetka.Application.UnitTests.Mocks;
 using Kolisetka.Domain;
 using Moq;
 using Shouldly;
+using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -57,6 +59,14 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
 
             var products = await _mockRepo.Object.GetAllAsync();
             products.Count.ShouldBe(4);
+
+            var addedProduct = products.LastOrDefault();
+            addedProduct.Category.ShouldBe(Category.Food);
+            addedProduct.DateCreated.ShouldBe(new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day, DateTime.UtcNow.Hour, DateTime.UtcNow.Minute, 0));
+            addedProduct.DateUpdated.ShouldBe(new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day, DateTime.UtcNow.Hour, DateTime.UtcNow.Minute, 0));
+            addedProduct.Description.ShouldBe("Na mały głód.");
+            addedProduct.Name.ShouldBe("Zapiekanka");
+            addedProduct.Price.ShouldBe(10.00m);
         }
 
         [Fact]
@@ -67,6 +77,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             var response = await _handler.Handle
                 (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None);
             response.ShouldBeOfType<BaseCommandResponse>();
+            response.Success.ShouldBeFalse();
             response.Errors.ShouldNotBeNull();
             response.Errors.Count.ShouldBe(1);
             response.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_InvalidPrecision.Replace("{PropertyName}", nameof(_productDto.Price)));
@@ -77,6 +88,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             response = await _handler.Handle
                 (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None);
             response.ShouldBeOfType<BaseCommandResponse>();
+            response.Success.ShouldBeFalse();
             response.Errors.ShouldNotBeNull();
             response.Errors.Count.ShouldBe(1);
             response.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_InvalidEnum.Replace("{PropertyName}", nameof(_productDto.Category)));
@@ -87,6 +99,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             response = await _handler.Handle
                 (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None);
             response.ShouldBeOfType<BaseCommandResponse>();
+            response.Success.ShouldBeFalse();
             response.Errors.ShouldNotBeNull();
             response.Errors.Count.ShouldBe(1);
             response.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_Required.Replace("{PropertyName}", nameof(_productDto.Name)));
@@ -96,6 +109,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             response = await _handler.Handle
                 (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None);
             response.ShouldBeOfType<BaseCommandResponse>();
+            response.Success.ShouldBeFalse();
             response.Errors.ShouldNotBeNull();
             response.Errors.Count.ShouldBe(1);
             MyString = ApplicationProperties.Resources.Product_Validator_TooLong.Replace("{PropertyName}", nameof(_productDto.Name));
@@ -108,6 +122,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             response = await _handler.Handle
                 (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None);
             response.ShouldBeOfType<BaseCommandResponse>();
+            response.Success.ShouldBeFalse();
             response.Errors.ShouldNotBeNull();
             response.Errors.Count.ShouldBe(1);
             response.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_Required.Replace("{PropertyName}", nameof(_productDto.Description)));
@@ -117,6 +132,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             response = await _handler.Handle
                 (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None);
             response.ShouldBeOfType<BaseCommandResponse>();
+            response.Success.ShouldBeFalse();
             response.Errors.ShouldNotBeNull();
             response.Errors.Count.ShouldBe(1);
             MyString = ApplicationProperties.Resources.Product_Validator_TooLong.Replace("{PropertyName}", nameof(_productDto.Description));

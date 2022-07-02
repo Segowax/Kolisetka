@@ -57,6 +57,8 @@ namespace Kolisetka.Application.UnitTests.Mocks
             });
             mockRepo.Setup(r => r.AddAsync(It.IsAny<Product>())).Returns((Product product) =>
             {
+                product.DateCreated = new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day, DateTime.UtcNow.Hour, DateTime.UtcNow.Minute, 0);
+                product.DateUpdated = new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day, DateTime.UtcNow.Hour, DateTime.UtcNow.Minute, 0);
                 products.Add(product);
 
                 return Task.CompletedTask;
