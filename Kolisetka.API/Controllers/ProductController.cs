@@ -1,6 +1,7 @@
 ﻿using Kolisetka.Application.DTOs.DtoProduct;
 using Kolisetka.Application.Features.Products.Requests.Commands;
 using Kolisetka.Application.Features.Products.Requests.Queries;
+using Kolisetka.Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,29 +40,35 @@ namespace Kolisetka.API.Controllers
 
         // POST api/<ProductController>
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] ProductCreateDto product)
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] ProductCreateDto product)
         {
-            await _mediator.Send(new CreateProductCommand { ProductCreateDto = product });
+            var response = await _mediator.Send(new CreateProductCommand { ProductCreateDto = product });
 
-            return NoContent();
+            return Ok(response);
         }
 
         // PUT api/<ProductController>
         [HttpPut]
-        public async Task<ActionResult> Put([FromBody] ProductUpdateDto product)
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<BaseCommandResponse>> Put([FromBody] ProductUpdateDto product)
         {
-            await _mediator.Send(new UpdateProductCommand { ProductUpdateDto = product });
+            var response = await _mediator.Send(new UpdateProductCommand { ProductUpdateDto = product });
 
-            return NoContent();
+            return Ok(response);
         }
 
         // DELETE api/<ProductController>
         [HttpDelete]
-        public async Task<ActionResult> Delete(ProductDeleteDto product)
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<BaseCommandResponse>> Delete(ProductDeleteDto product)
         {
-            await _mediator.Send(new DeleteProductCommand { ProductDeleteDto = product });
+            var response = await _mediator.Send(new DeleteProductCommand { ProductDeleteDto = product });
 
-            return NoContent();
+            return Ok(response);
         }
 
     }
