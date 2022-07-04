@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kolisetka.Application.UnitT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kolisetka.API", "Kolisetka.API\Kolisetka.API.csproj", "{248B30AF-710F-48FB-9ADA-96027747B7BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kolisetka.MVC", "Kolisetka.MVC\Kolisetka.MVC.csproj", "{1A303DD8-FB31-4794-A8A4-69A6CDE73475}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kolisetka.MVC", "Kolisetka.MVC\Kolisetka.MVC.csproj", "{1A303DD8-FB31-4794-A8A4-69A6CDE73475}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
