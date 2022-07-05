@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Kolisetka.MVC.Contracts;
-using Kolisetka.MVC.Models.Base;
 using Kolisetka.MVC.Models.Product;
 using Kolisetka.MVC.Services.Base;
 
@@ -39,7 +38,6 @@ namespace Kolisetka.MVC.Services
             }
             catch (ApiException ex)
             {
-
                 return ConvertApiExceptions<int>(ex);
             }
         }
