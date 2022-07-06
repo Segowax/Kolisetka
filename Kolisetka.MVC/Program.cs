@@ -1,6 +1,7 @@
 using Kolisetka.MVC.Contracts;
 using Kolisetka.MVC.Services;
 using Kolisetka.MVC.Services.Base;
+using System.Globalization;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,11 @@ builder.Services.AddSingleton<ILocalStorageService, LocalStorageService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddControllersWithViews();
+
+// Set culture, necessary for app to have decimal separator
+var cultureInfo = new CultureInfo("en-US");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
 var app = builder.Build();
 
