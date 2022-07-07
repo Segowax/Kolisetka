@@ -628,11 +628,11 @@ namespace Kolisetka.MVC.Services.Base
     public enum Category
     {
 
-        _0 = 0,
+        Food = 0,
 
-        _1 = 1,
+        SoftDrink = 1,
 
-        _2 = 2,
+        AlkoholicDrink = 2,
 
     }
 

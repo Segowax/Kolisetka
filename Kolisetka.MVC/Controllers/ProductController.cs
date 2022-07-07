@@ -24,7 +24,9 @@ namespace Kolisetka.MVC.Controllers
         // GET: ProductController/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            return View();
+            var model = await _productService.GetProductDetails(id);
+
+            return View(model);
         }
 
         // GET: ProductController/Create
@@ -57,7 +59,9 @@ namespace Kolisetka.MVC.Controllers
         // GET: ProductController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            var model = await _productService.GetProductDetails(id);
+
+            return View(model);
         }
 
         // POST: ProductController/Edit/5
@@ -78,7 +82,9 @@ namespace Kolisetka.MVC.Controllers
         // GET: ProductController/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            var model = await _productService.GetProductDetails(id);
+
+            return View(model);
         }
 
         // POST: ProductController/Delete/5
