@@ -67,16 +67,22 @@ namespace Kolisetka.MVC.Controllers
         // POST: ProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(ProductUpdateVM product)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var response = await _productService.UpdateProduct(product);
+                if (response.Success == true)
+                    return RedirectToAction(nameof(Index));
+                else if (response.ValidationError != null)
+                    ModelState.AddModelError("", response.ValidationError);
             }
-            catch
+            catch (Exception)
             {
-                return View();
+                ModelState.AddModelError("Something went wrong!", "Error");
             }
+
+            return View();
         }
 
         // GET: ProductController/Delete/5
@@ -90,16 +96,22 @@ namespace Kolisetka.MVC.Controllers
         // POST: ProductController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(ProductDeleteVM product)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var response = await _productService.DeleteProduct(product);
+                if (response.Success == true)
+                    return RedirectToAction(nameof(Index));
+                else if (response.ValidationError != null)
+                    ModelState.AddModelError("", response.ValidationError);
             }
             catch
             {
-                return View();
+                ModelState.AddModelError("Something went wrong!", "Error");
             }
+
+            return View();
         }
     }
 }
