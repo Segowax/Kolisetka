@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Kolisetka.Application\Kolisetka.Application.csproj" />
+    <ProjectReference Include="..\Kolisetka.Identity\Kolisetka.Identity.csproj" />
     <ProjectReference Include="..\Kolisetka.Persistence\Kolisetka.Persistence.csproj" />
   </ItemGroup>
 
