@@ -31,7 +31,6 @@
 
   <ItemGroup>
     <Folder Include="Features\User\Handlers\Commands\" />
-    <Folder Include="Features\User\Handlers\Queries\" />
   </ItemGroup>
 
 </Project>

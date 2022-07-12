@@ -1,6 +1,7 @@
 ﻿using Kolisetka.Application.Contracts.Persistence;
 using Kolisetka.Application.Features.User.Requests.Queries;
 using Kolisetka.Application.Responses;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kolisetka.API.Controllers
@@ -9,17 +10,17 @@ namespace Kolisetka.API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly IAuthService _authService;
+        private readonly IMediator _mediator;
 
-        public AccountController(IAuthService authSevice)
+        public AccountController(IMediator mediator)
         {
-            _authService = authSevice;
+            _mediator = mediator;
         }
 
-        [HttpGet("login")]
+        [HttpPost("login")]
         public async Task<ActionResult<AuthResponse>> Login(GetAuthUserQuery query)
         {
-            var response = await _authService.Login(query);
+            var response = await _mediator.Send(query);
 
             return Ok(response);
         }

@@ -1,7 +1,7 @@
 ﻿using Kolisetka.Application.Contracts.Persistence;
 using Kolisetka.Application.Settings;
 using Kolisetka.Domain.Models;
-using Kolisetka.Identity.Services;
+using Kolisetka.Identity.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -17,7 +17,8 @@ namespace Kolisetka.Identity
         public static IServiceCollection ConfigureIdentityServices
             (this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
+            var jwtSettings = configuration.GetSection("JwtSettings").Get<JwtSettings>();
+            services.AddSingleton<JwtSettings>(jwtSettings);
 
             services.AddDbContext<KolisetkaIdentityDbContext>
                 (options => options.UseSqlServer(configuration.GetConnectionString("IdentityConnectionString"),
@@ -26,7 +27,7 @@ namespace Kolisetka.Identity
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<KolisetkaIdentityDbContext>().AddDefaultTokenProviders();
 
-            services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<IAuthRepository, AuthRepository>();
 
             services.AddAuthentication(options =>
             {
@@ -47,6 +48,7 @@ namespace Kolisetka.Identity
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:Key"]))
                     };
                 });
+
             return services;
         }
     }

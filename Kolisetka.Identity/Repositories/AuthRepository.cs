@@ -10,15 +10,15 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace Kolisetka.Identity.Services
+namespace Kolisetka.Identity.Repositories
 {
-    public class AuthService : IAuthService
+    public class AuthRepository : IAuthRepository
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly JwtSettings _jwtSettings;
 
-        public AuthService
+        public AuthRepository
             (UserManager<User> userManager, SignInManager<User> signInManager, JwtSettings jwtSettings)
         {
             _userManager = userManager;
@@ -31,7 +31,7 @@ namespace Kolisetka.Identity.Services
             var user = await _userManager.FindByEmailAsync(query.Email);
             if (user is null)
                 throw new Exception($"Iinvalid password or with {query.Email} email does not exist!");
-            var result = await _signInManager.PasswordSignInAsync(user.UserName, user.PasswordHash, false, false);
+            var result = await _signInManager.PasswordSignInAsync(user.UserName, query.Password, false, false);
             if (!result.Succeeded)
                 throw new Exception($"Iinvalid password or with {query.Email} email does not exist!");
 

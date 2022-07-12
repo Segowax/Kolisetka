@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Kolisetka.Application.Contracts.Persistence
 {
-    public interface IAuthService
+    public interface IAuthRepository
     {
         Task<AuthResponse> Login(GetAuthUserQuery query);
         Task Register(CreateUserCommand command);
