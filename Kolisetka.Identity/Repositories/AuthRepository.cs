@@ -1,6 +1,7 @@
 ﻿using Kolisetka.Application.Contracts.Persistence;
 using Kolisetka.Application.Features.User.Requests.Commands;
 using Kolisetka.Application.Features.User.Requests.Queries;
+using Kolisetka.Application.Properties;
 using Kolisetka.Application.Responses;
 using Kolisetka.Application.Settings;
 using Kolisetka.Domain.Models;
@@ -26,24 +27,27 @@ namespace Kolisetka.Identity.Repositories
             _jwtSettings = jwtSettings;
         }
 
-        public async Task<AuthResponse> Login(GetAuthUserQuery query)
+        public async Task<AuthResponse> Login(GetUserQuery query)
         {
+            var response = new AuthResponse();
             var user = await _userManager.FindByEmailAsync(query.Email);
-            if (user is null)
-                throw new Exception($"Iinvalid password or with {query.Email} email does not exist!");
-            var result = await _signInManager.PasswordSignInAsync(user.UserName, query.Password, false, false);
+            var result = await _signInManager.PasswordSignInAsync(query.Email, query.Password, false, false);
             if (!result.Succeeded)
-                throw new Exception($"Iinvalid password or with {query.Email} email does not exist!");
+            {
+                response.Success = false;
+                response.Message = Resources.User_Validator_NotExistsOrInvalidPassword;
+
+                return response;
+            }
 
             JwtSecurityToken jwtSecurityToken = await GenerateToken(user);
+            response.Email = user.Email;
+            response.Id = user.Id;
+            response.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
+            response.UserName = user.UserName;
+            response.Success = true;
 
-            return new AuthResponse
-            {
-                Email = user.Email,
-                Id = user.Id,
-                Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
-                UserName = user.UserName
-            };
+            return response;
         }
 
         private async Task<JwtSecurityToken> GenerateToken(User user)
@@ -79,6 +83,13 @@ namespace Kolisetka.Identity.Repositories
         public Task Register(CreateUserCommand command)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<bool> IsExist(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            return user != null;
         }
     }
 }

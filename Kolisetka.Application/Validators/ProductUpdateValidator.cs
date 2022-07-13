@@ -1,13 +1,25 @@
 ﻿using FluentValidation;
 using Kolisetka.Application.DTOs.DtoProduct;
+using Kolisetka.Application.Contracts.Persistence;
 using Kolisetka.Application.Properties;
 
-namespace Kolisetka.Application.DTOs.Validators
+namespace Kolisetka.Application.Validators
 {
-    class ProductCreateValidator : AbstractValidator<ProductCreateDto>
+    class ProductUpdateValidator : AbstractValidator<ProductUpdateDto>
     {
-        public ProductCreateValidator()
+        private readonly IProductRepository _productRepository;
+
+        public ProductUpdateValidator(IProductRepository productRepository)
         {
+            _productRepository = productRepository;
+
+            RuleFor(prop => prop.Id)
+                .GreaterThan(0).WithMessage(Resources.Product_Validator_NotExists)
+                .MustAsync(async (id, token) =>
+                {
+                    return await _productRepository.IsExist(id);
+                }).WithMessage(Resources.Product_Validator_NotExists);
+
             RuleFor(prop => prop.Category)
                 .NotNull().WithMessage(Resources.Product_Validator_Required)
                 .IsInEnum().WithMessage(Resources.Product_Validator_InvalidEnum);

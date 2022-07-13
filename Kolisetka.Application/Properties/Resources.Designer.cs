@@ -61,6 +61,60 @@ namespace Kolisetka.Application.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Product creation failed..
+        /// </summary>
+        public static string Product_Creation_Failure {
+            get {
+                return ResourceManager.GetString("Product.Creation.Failure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Product creation successful..
+        /// </summary>
+        public static string Product_Creation_Success {
+            get {
+                return ResourceManager.GetString("Product.Creation.Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Product deletion failed..
+        /// </summary>
+        public static string Product_Deletion_Failure {
+            get {
+                return ResourceManager.GetString("Product.Deletion.Failure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Product deletion successful..
+        /// </summary>
+        public static string Product_Deletion_Success {
+            get {
+                return ResourceManager.GetString("Product.Deletion.Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Product update failed..
+        /// </summary>
+        public static string Product_Update_Failure {
+            get {
+                return ResourceManager.GetString("Product.Update.Failure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Product update failed..
+        /// </summary>
+        public static string Product_Update_Success {
+            get {
+                return ResourceManager.GetString("Product.Update.Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu {PropertyName} has to be grater than 0..
         /// </summary>
         public static string Product_Validator_GreaterThan0 {
@@ -111,6 +165,15 @@ namespace Kolisetka.Application.Properties {
         public static string Product_Validator_TooLong {
             get {
                 return ResourceManager.GetString("Product.Validator.TooLong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu User does not exist or invalid password..
+        /// </summary>
+        public static string User_Validator_NotExistsOrInvalidPassword {
+            get {
+                return ResourceManager.GetString("User.Validator.NotExistsOrInvalidPassword", resourceCulture);
             }
         }
     }

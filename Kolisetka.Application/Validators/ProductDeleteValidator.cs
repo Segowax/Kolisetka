@@ -3,7 +3,7 @@ using Kolisetka.Application.DTOs.DtoProduct;
 using Kolisetka.Application.Contracts.Persistence;
 using Kolisetka.Application.Properties;
 
-namespace Kolisetka.Application.DTOs.Validators
+namespace Kolisetka.Application.Validators
 {
     public class ProductDeleteValidator : AbstractValidator<ProductDeleteDto>
     {
@@ -17,8 +17,7 @@ namespace Kolisetka.Application.DTOs.Validators
                 .GreaterThan(0)
                 .MustAsync(async (id, token) =>
                 {
-                    var isProductExist = await _productRepository.IsExist(id);
-                    return isProductExist;
+                    return await _productRepository.IsExist(id);
                 }).WithMessage(Resources.Product_Validator_NotExists);
         }
     }

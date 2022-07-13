@@ -1,5 +1,4 @@
-﻿using Kolisetka.Application.Contracts.Persistence;
-using Kolisetka.Application.Features.User.Requests.Queries;
+﻿using Kolisetka.Application.Features.User.Requests.Queries;
 using Kolisetka.Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +17,7 @@ namespace Kolisetka.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<AuthResponse>> Login(GetAuthUserQuery query)
+        public async Task<ActionResult<AuthResponse>> Login(GetUserQuery query)
         {
             var response = await _mediator.Send(query);
 

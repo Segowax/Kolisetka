@@ -1,6 +1,6 @@
 ﻿namespace Kolisetka.Application.Responses
 {
-    public class AuthResponse
+    public class AuthResponse : BaseCommandResponse
     {
         public string Id { get; set; }
         public string UserName { get; set; }

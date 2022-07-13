@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Kolisetka.Application.DTOs.Validators;
+using Kolisetka.Application.Validators;
 using Kolisetka.Application.Features.Products.Requests.Commands;
 using Kolisetka.Application.Contracts.Persistence;
 using MediatR;
@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Kolisetka.Application.Responses;
 using System.Linq;
+using Kolisetka.Application.Properties;
 
 namespace Kolisetka.Application.Features.Products.Handlers.Commands
 {
@@ -30,7 +31,7 @@ namespace Kolisetka.Application.Features.Products.Handlers.Commands
             if (!validationResult.IsValid)
             {
                 response.Success = false;
-                response.Message = "Product updation failed.";
+                response.Message = Resources.Product_Update_Failure;
                 response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).Distinct().ToList();
 
                 return response;
@@ -38,7 +39,7 @@ namespace Kolisetka.Application.Features.Products.Handlers.Commands
             else
             {
                 response.Success = true;
-                response.Message = "Product creation successful.";
+                response.Message = Resources.Product_Update_Success;
             }
 
             var product = await _productRepository.GetAsync(request.ProductUpdateDto.Id);

@@ -7,7 +7,8 @@ namespace Kolisetka.Application.Contracts.Persistence
 {
     public interface IAuthRepository
     {
-        Task<AuthResponse> Login(GetAuthUserQuery query);
+        Task<AuthResponse> Login(GetUserQuery query);
         Task Register(CreateUserCommand command);
+        Task<bool> IsExist(string email);
     }
 }

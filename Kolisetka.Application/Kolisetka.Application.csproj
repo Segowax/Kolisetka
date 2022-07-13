@@ -29,8 +29,4 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\User\Handlers\Commands\" />
-  </ItemGroup>
-
 </Project>

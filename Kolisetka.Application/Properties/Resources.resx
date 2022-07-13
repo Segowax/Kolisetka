@@ -117,6 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Product.Creation.Failure" xml:space="preserve">
+    <value>Product creation failed.</value>
+  </data>
+  <data name="Product.Creation.Success" xml:space="preserve">
+    <value>Product creation successful.</value>
+  </data>
+  <data name="Product.Deletion.Failure" xml:space="preserve">
+    <value>Product deletion failed.</value>
+  </data>
+  <data name="Product.Deletion.Success" xml:space="preserve">
+    <value>Product deletion successful.</value>
+  </data>
+  <data name="Product.Update.Failure" xml:space="preserve">
+    <value>Product update failed.</value>
+  </data>
+  <data name="Product.Update.Success" xml:space="preserve">
+    <value>Product update failed.</value>
+  </data>
   <data name="Product.Validator.GreaterThan0" xml:space="preserve">
     <value>{PropertyName} has to be grater than 0.</value>
   </data>
@@ -134,5 +152,8 @@
   </data>
   <data name="Product.Validator.TooLong" xml:space="preserve">
     <value>{PropertyName} must not exceed {MaxLength} characters.</value>
+  </data>
+  <data name="User.Validator.NotExistsOrInvalidPassword" xml:space="preserve">
+    <value>User does not exist or invalid password.</value>
   </data>
 </root>
