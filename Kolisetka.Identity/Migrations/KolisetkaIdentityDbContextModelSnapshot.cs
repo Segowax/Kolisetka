@@ -97,7 +97,7 @@ namespace Kolisetka.Identity.Migrations
                         {
                             Id = "0be5b79b-d566-4fb1-b9f7-9aa1115d889b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7e75f9a3-88ca-4c80-87fb-ddf7140b50d4",
+                            ConcurrencyStamp = "2bbb8859-80b6-4412-b1ed-5201e0768266",
                             Email = "user@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -105,9 +105,9 @@ namespace Kolisetka.Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEVcznGUUZ+T9cVHxdHP0EOd7aqcGpIrJro5oANx8U9EylCk9IMNwBU+pUfz8pba4g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHkapHF2fNXKpwIpbCK79akcJVb6Ru4pQNAGAseOM59qVtccyynhvFBayL/m3VgmEg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "aa1428e0-75dd-4aca-9e1a-453f680a4b70",
+                            SecurityStamp = "1a3e5666-d3c7-48ea-81a9-a6d887fb2fd6",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         },
@@ -115,7 +115,7 @@ namespace Kolisetka.Identity.Migrations
                         {
                             Id = "cfd8e76a-aa81-41b3-8623-a6882006a126",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e1e1bc26-9b96-4331-aeb9-bd3ebddd0bf0",
+                            ConcurrencyStamp = "111e0f29-ad98-4b35-b2cf-479f4f411446",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -123,9 +123,9 @@ namespace Kolisetka.Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDikJiRwR+xTRVnKD0g7W4EQ2cHLmAerQI56Li2UgCc1ImC7PxOyxTyg3vISRhNh2A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDhn7HucMU46h9xx/BMnKjYG2OxtcYA+QsSfE9EMNPBsoUA3PjYm31Jeo3roE5gs/g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "74e6bbc8-c96d-4f89-bb6d-4ae048d12538",
+                            SecurityStamp = "375865db-0d66-40d7-ab4f-1c442ce6b406",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -161,14 +161,14 @@ namespace Kolisetka.Identity.Migrations
                         new
                         {
                             Id = "8b693986-0d12-487f-9fde-e0e983e2f51c",
-                            ConcurrencyStamp = "d6f25135-1082-44a0-bf3d-39f31d80ec98",
+                            ConcurrencyStamp = "2b67acb9-0a43-4e9b-aea6-3f6401965f78",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "c619043f-2923-4180-95fc-1104ed3ddc3e",
-                            ConcurrencyStamp = "8fd35c83-f9d0-431a-bb25-bace594edc27",
+                            ConcurrencyStamp = "e750873d-2f48-4bbe-b6d2-82c4550abcae",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Kolisetka.Identity.Migrations
 {
-    public partial class Initial : Migration
+    public partial class IdentityInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -161,8 +161,8 @@ namespace Kolisetka.Identity.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "8b693986-0d12-487f-9fde-e0e983e2f51c", "d6f25135-1082-44a0-bf3d-39f31d80ec98", "User", "USER" },
-                    { "c619043f-2923-4180-95fc-1104ed3ddc3e", "8fd35c83-f9d0-431a-bb25-bace594edc27", "Admin", "ADMIN" }
+                    { "8b693986-0d12-487f-9fde-e0e983e2f51c", "2b67acb9-0a43-4e9b-aea6-3f6401965f78", "User", "USER" },
+                    { "c619043f-2923-4180-95fc-1104ed3ddc3e", "e750873d-2f48-4bbe-b6d2-82c4550abcae", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -170,8 +170,8 @@ namespace Kolisetka.Identity.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "0be5b79b-d566-4fb1-b9f7-9aa1115d889b", 0, "7e75f9a3-88ca-4c80-87fb-ddf7140b50d4", "user@localhost.com", true, "System", "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAEAACcQAAAAEEVcznGUUZ+T9cVHxdHP0EOd7aqcGpIrJro5oANx8U9EylCk9IMNwBU+pUfz8pba4g==", null, false, "aa1428e0-75dd-4aca-9e1a-453f680a4b70", false, "user@localhost.com" },
-                    { "cfd8e76a-aa81-41b3-8623-a6882006a126", 0, "e1e1bc26-9b96-4331-aeb9-bd3ebddd0bf0", "admin@localhost.com", true, "System", "Admin", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAEAACcQAAAAEDikJiRwR+xTRVnKD0g7W4EQ2cHLmAerQI56Li2UgCc1ImC7PxOyxTyg3vISRhNh2A==", null, false, "74e6bbc8-c96d-4f89-bb6d-4ae048d12538", false, "admin@localhost.com" }
+                    { "0be5b79b-d566-4fb1-b9f7-9aa1115d889b", 0, "2bbb8859-80b6-4412-b1ed-5201e0768266", "user@localhost.com", true, "System", "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAEAACcQAAAAEHkapHF2fNXKpwIpbCK79akcJVb6Ru4pQNAGAseOM59qVtccyynhvFBayL/m3VgmEg==", null, false, "1a3e5666-d3c7-48ea-81a9-a6d887fb2fd6", false, "user@localhost.com" },
+                    { "cfd8e76a-aa81-41b3-8623-a6882006a126", 0, "111e0f29-ad98-4b35-b2cf-479f4f411446", "admin@localhost.com", true, "System", "Admin", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAEAACcQAAAAEDhn7HucMU46h9xx/BMnKjYG2OxtcYA+QsSfE9EMNPBsoUA3PjYm31Jeo3roE5gs/g==", null, false, "375865db-0d66-40d7-ab4f-1c442ce6b406", false, "admin@localhost.com" }
                 });
 
             migrationBuilder.InsertData(

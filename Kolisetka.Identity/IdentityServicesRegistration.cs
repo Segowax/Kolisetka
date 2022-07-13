@@ -21,7 +21,7 @@ namespace Kolisetka.Identity
             services.AddSingleton<JwtSettings>(jwtSettings);
 
             services.AddDbContext<KolisetkaIdentityDbContext>
-                (options => options.UseSqlServer(configuration.GetConnectionString("IdentityConnectionString"),
+                (options => options.UseSqlServer(configuration.GetConnectionString("KolisetkaConnectionString"),
                 b => b.MigrationsAssembly(typeof(KolisetkaIdentityDbContext).Assembly.FullName)));
 
             services.AddIdentity<User, IdentityRole>()
