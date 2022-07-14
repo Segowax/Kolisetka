@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using Kolisetka.Application.Responses;
+using MediatR;
 
 namespace Kolisetka.Application.Features.User.Requests.Commands
 {
-    public class CreateUserCommand : IRequest<Unit>
+    public class CreateUserCommand : IRequest<BaseCommandResponse>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

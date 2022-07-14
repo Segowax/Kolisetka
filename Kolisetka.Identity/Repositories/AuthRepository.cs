@@ -6,6 +6,7 @@ using Kolisetka.Application.Responses;
 using Kolisetka.Application.Settings;
 using Kolisetka.Domain.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -17,10 +18,10 @@ namespace Kolisetka.Identity.Repositories
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly JwtSettings _jwtSettings;
+        private readonly IOptions<JwtSettings> _jwtSettings;
 
         public AuthRepository
-            (UserManager<User> userManager, SignInManager<User> signInManager, JwtSettings jwtSettings)
+            (UserManager<User> userManager, SignInManager<User> signInManager, IOptions<JwtSettings> jwtSettings)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -68,13 +69,13 @@ namespace Kolisetka.Identity.Repositories
             }
             .Union(userClaims)
             .Union(roleClaims);
-            var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
+            var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Value.Key));
             var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
             var jwtSecurityToken = new JwtSecurityToken(
-                issuer: _jwtSettings.Issuer,
-                audience: _jwtSettings.Audience,
+                issuer: _jwtSettings.Value.Issuer,
+                audience: _jwtSettings.Value.Audience,
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(_jwtSettings.DurationInMinutes),
+                expires: DateTime.UtcNow.AddMinutes(_jwtSettings.Value.DurationInMinutes),
                 signingCredentials: signingCredentials);
 
             return jwtSecurityToken;

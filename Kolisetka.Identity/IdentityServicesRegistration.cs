@@ -17,8 +17,7 @@ namespace Kolisetka.Identity
         public static IServiceCollection ConfigureIdentityServices
             (this IServiceCollection services, IConfiguration configuration)
         {
-            var jwtSettings = configuration.GetSection("JwtSettings").Get<JwtSettings>();
-            services.AddSingleton<JwtSettings>(jwtSettings);
+            services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
 
             services.AddDbContext<KolisetkaIdentityDbContext>
                 (options => options.UseSqlServer(configuration.GetConnectionString("KolisetkaConnectionString"),
