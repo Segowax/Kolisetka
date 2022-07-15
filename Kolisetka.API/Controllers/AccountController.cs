@@ -17,7 +17,7 @@ namespace Kolisetka.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<AuthResponse>> Login(GetUserQuery query)
+        public async Task<ActionResult<AuthResponse>> Login(GetUserRequest query)
         {
             var response = await _mediator.Send(query);
 

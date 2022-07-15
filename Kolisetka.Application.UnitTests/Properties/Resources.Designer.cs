@@ -61,6 +61,24 @@ namespace Kolisetka.Application.UnitTests.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu admin1@localhost.com.
+        /// </summary>
+        internal static string Test_InvalidUser_Email {
+            get {
+                return ResourceManager.GetString("Test.InvalidUser.Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu pieskiToBumBum.
+        /// </summary>
+        internal static string Test_InvalidUser_Password {
+            get {
+                return ResourceManager.GetString("Test.InvalidUser.Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu StringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStriStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStriStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStriStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStriStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStriStringString [obcięto pozostałą część ciągu]&quot;;.
         /// </summary>
         internal static string Test_TooLongString_1001 {
@@ -75,6 +93,42 @@ namespace Kolisetka.Application.UnitTests.Properties {
         internal static string Test_TooLongString_101 {
             get {
                 return ResourceManager.GetString("Test.TooLongString.101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu user@localhost.com.
+        /// </summary>
+        internal static string Test_ValidUser_Email {
+            get {
+                return ResourceManager.GetString("Test.ValidUser.Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu 0be5b79b-d566-4fb1-b9f7-9aa1115d889b.
+        /// </summary>
+        internal static string Test_ValidUser_Id {
+            get {
+                return ResourceManager.GetString("Test.ValidUser.Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu kotyToBumBum.
+        /// </summary>
+        internal static string Test_ValidUser_Password {
+            get {
+                return ResourceManager.GetString("Test.ValidUser.Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu user@localhost.com.
+        /// </summary>
+        internal static string Test_ValidUser_UserName {
+            get {
+                return ResourceManager.GetString("Test.ValidUser.UserName", resourceCulture);
             }
         }
     }

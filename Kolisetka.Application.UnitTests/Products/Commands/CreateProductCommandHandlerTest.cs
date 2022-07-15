@@ -50,7 +50,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
         }
 
         [Fact]
-        public async Task Valid_Product_Added()
+        public async Task Valid_Product_Add_Test()
         {
             var response = await _handler.Handle
                 (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
         }
 
         [Fact]
-        public async Task Invalid_Product_Added()
+        public async Task Invalid_Product_Add_Test()
         {
             // invalid price - invalid precision
             _productDto.Price = 10.002m;

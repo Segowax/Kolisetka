@@ -32,7 +32,7 @@ namespace Kolisetka.Application.UnitTests.Products.Queries
         }
 
         [Fact]
-        public async Task GetProductTest()
+        public async Task Get_Product_With_Success_Test()
         {
             var handler = new GetProductRequestHandler(_mockRepo.Object, _mapper);
             var result = await handler.Handle(new GetProductRequest() { Id = 1 }, CancellationToken.None);

@@ -106,7 +106,7 @@ namespace Kolisetka.Application.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Product update failed..
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Product update successful..
         /// </summary>
         public static string Product_Update_Success {
             get {

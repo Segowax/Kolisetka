@@ -117,10 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Test.InvalidUser.Email" xml:space="preserve">
+    <value>admin1@localhost.com</value>
+  </data>
+  <data name="Test.InvalidUser.Password" xml:space="preserve">
+    <value>pieskiToBumBum</value>
+  </data>
   <data name="Test.TooLongString.1001" xml:space="preserve">
     <value>StringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStriStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStriStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStriStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStriStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStriStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStriStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStriStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStriStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStriStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStrin</value>
   </data>
   <data name="Test.TooLongString.101" xml:space="preserve">
     <value>StringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStrin</value>
+  </data>
+  <data name="Test.ValidUser.Email" xml:space="preserve">
+    <value>user@localhost.com</value>
+  </data>
+  <data name="Test.ValidUser.Id" xml:space="preserve">
+    <value>0be5b79b-d566-4fb1-b9f7-9aa1115d889b</value>
+  </data>
+  <data name="Test.ValidUser.Password" xml:space="preserve">
+    <value>kotyToBumBum</value>
+  </data>
+  <data name="Test.ValidUser.UserName" xml:space="preserve">
+    <value>user@localhost.com</value>
   </data>
 </root>

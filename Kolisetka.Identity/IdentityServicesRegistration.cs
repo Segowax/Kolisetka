@@ -1,4 +1,4 @@
-﻿using Kolisetka.Application.Contracts.Persistence;
+﻿using Kolisetka.Application.Contracts.Identity;
 using Kolisetka.Application.Settings;
 using Kolisetka.Domain.Models;
 using Kolisetka.Identity.Repositories;

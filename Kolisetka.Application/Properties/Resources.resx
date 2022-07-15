@@ -133,7 +133,7 @@
     <value>Product update failed.</value>
   </data>
   <data name="Product.Update.Success" xml:space="preserve">
-    <value>Product update failed.</value>
+    <value>Product update successful.</value>
   </data>
   <data name="Product.Validator.GreaterThan0" xml:space="preserve">
     <value>{PropertyName} has to be grater than 0.</value>

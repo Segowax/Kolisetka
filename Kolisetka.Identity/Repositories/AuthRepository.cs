@@ -1,4 +1,4 @@
-﻿using Kolisetka.Application.Contracts.Persistence;
+﻿using Kolisetka.Application.Contracts.Identity;
 using Kolisetka.Application.Features.User.Requests.Commands;
 using Kolisetka.Application.Features.User.Requests.Queries;
 using Kolisetka.Application.Properties;
@@ -28,7 +28,7 @@ namespace Kolisetka.Identity.Repositories
             _jwtSettings = jwtSettings;
         }
 
-        public async Task<AuthResponse> Login(GetUserQuery query)
+        public async Task<AuthResponse> Login(GetUserRequest query)
         {
             var response = new AuthResponse();
             var user = await _userManager.FindByEmailAsync(query.Email);

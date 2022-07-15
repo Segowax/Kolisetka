@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Kolisetka.Application.UnitTests.Mocks
 {
-    public static class MockProductRepository
+    internal static class MockProductRepository
     {
-        public static Mock<IProductRepository> GetProductsRepository()
+        internal static Mock<IProductRepository> GetProductsRepository()
         {
             var products = new List<Product>
             {

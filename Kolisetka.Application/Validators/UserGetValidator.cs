@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
-using Kolisetka.Application.Contracts.Persistence;
+using Kolisetka.Application.Contracts.Identity;
 using Kolisetka.Application.Features.User.Requests.Queries;
 using Kolisetka.Application.Properties;
 
 namespace Kolisetka.Application.Validators
 {
-    public class UserGetValidator: AbstractValidator<GetUserQuery>
+    public class UserGetValidator: AbstractValidator<GetUserRequest>
     {
         private readonly IAuthRepository _authRepository;
 

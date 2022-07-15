@@ -51,7 +51,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
         }
 
         [Fact]
-        public async Task Valid_Product_Update()
+        public async Task Valid_Product_Update_Test()
         {
             var response = await _handler.Handle
                 (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
         }
 
         [Fact]
-        public async Task Invalid_Product_Update()
+        public async Task Invalid_Product_Update_Test()
         {
             // invalid id
             _productDto.Id = 5;

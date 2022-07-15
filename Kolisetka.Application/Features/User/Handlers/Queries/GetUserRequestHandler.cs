@@ -1,4 +1,4 @@
-﻿using Kolisetka.Application.Contracts.Persistence;
+﻿using Kolisetka.Application.Contracts.Identity;
 using Kolisetka.Application.Features.User.Requests.Queries;
 using Kolisetka.Application.Properties;
 using Kolisetka.Application.Responses;
@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 
 namespace Kolisetka.Application.Features.User.Handlers.Queries
 {
-    public class GetUserQueryHandler : IRequestHandler<GetUserQuery, AuthResponse>
+    public class GetUserRequestHandler : IRequestHandler<GetUserRequest, AuthResponse>
     {
         private readonly IAuthRepository _authRepository;
 
-        public GetUserQueryHandler(IAuthRepository authRepository)
+        public GetUserRequestHandler(IAuthRepository authRepository)
         {
             _authRepository = authRepository;
         }
 
-        public async Task<AuthResponse> Handle(GetUserQuery request, CancellationToken cancellationToken)
+        public async Task<AuthResponse> Handle(GetUserRequest request, CancellationToken cancellationToken)
         {
             var response = new AuthResponse();
             var validator = new UserGetValidator(_authRepository);
