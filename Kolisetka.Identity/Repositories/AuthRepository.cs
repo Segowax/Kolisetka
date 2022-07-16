@@ -1,5 +1,4 @@
 ﻿using Kolisetka.Application.Contracts.Identity;
-using Kolisetka.Application.Features.User.Requests.Commands;
 using Kolisetka.Application.Features.User.Requests.Queries;
 using Kolisetka.Application.Properties;
 using Kolisetka.Application.Responses;
@@ -81,14 +80,25 @@ namespace Kolisetka.Identity.Repositories
             return jwtSecurityToken;
         }
 
-        public Task Register(CreateUserCommand command)
+        public async Task Register(User command, string password)
         {
-            throw new NotImplementedException();
+            var result = await _userManager.CreateAsync(command, password);
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(command, "Employee");                
+            }
         }
 
-        public async Task<bool> IsExist(string email)
+        public async Task<bool> IsEmailExist(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
+
+            return user != null;
+        }
+
+        public async Task<bool> IsUserNameExist(string userName)
+        {
+            var user = await _userManager.FindByNameAsync(userName);
 
             return user != null;
         }

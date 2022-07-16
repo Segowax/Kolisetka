@@ -20,7 +20,7 @@ namespace Kolisetka.Application.Validators
                 .MaximumLength(256).WithMessage(Resources.User_Validator_NotExistsOrInvalidPassword)
                 .MustAsync(async (email, token) =>
                 {
-                    return await _authRepository.IsExist(email);
+                    return await _authRepository.IsEmailExist(email);
                 }).WithMessage(Resources.User_Validator_NotExistsOrInvalidPassword);
             RuleFor(prop => prop.Password)
                 .NotNull().WithMessage(Resources.User_Validator_NotExistsOrInvalidPassword)

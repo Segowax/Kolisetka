@@ -47,7 +47,7 @@ namespace Kolisetka.Application.UnitTests.Mocks
 
                 return response;
             });
-            mockRepo.Setup(r => r.IsExist(It.IsAny<string>())).ReturnsAsync((string email) =>
+            mockRepo.Setup(r => r.IsEmailExist(It.IsAny<string>())).ReturnsAsync((string email) =>
             {
                 foreach (var user in users)
                 {

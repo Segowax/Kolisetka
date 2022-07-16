@@ -13,6 +13,7 @@ namespace Kolisetka.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
+    [ProducesResponseType(401)]
     public class ProductController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -24,6 +25,8 @@ namespace Kolisetka.API.Controllers
 
         // GET: api/<ProductController>
         [HttpGet]
+        [ProducesResponseType(typeof(IReadOnlyList<ProductGetDto>), 200)]
+        [ProducesResponseType(204)]
         public async Task<ActionResult<IReadOnlyList<ProductGetDto>>> Get()
         {
             var products = await _mediator.Send(new GetProductsListRequest());
@@ -33,6 +36,8 @@ namespace Kolisetka.API.Controllers
 
         // GET api/<ProductController>/5
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(ProductGetDto), 200)]
+        [ProducesResponseType(204)]
         public async Task<ActionResult<ProductGetDto>> Get(int id)
         {
             var product = await _mediator.Send(new GetProductRequest { Id = id });
@@ -42,7 +47,7 @@ namespace Kolisetka.API.Controllers
 
         // POST api/<ProductController>
         [HttpPost]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(BaseCommandResponse), 200)]
         [ProducesResponseType(400)]
         public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] ProductCreateDto product)
         {
@@ -53,7 +58,7 @@ namespace Kolisetka.API.Controllers
 
         // PUT api/<ProductController>
         [HttpPut]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(BaseCommandResponse), 200)]
         [ProducesResponseType(400)]
         public async Task<ActionResult<BaseCommandResponse>> Put([FromBody] ProductUpdateDto product)
         {
@@ -64,7 +69,7 @@ namespace Kolisetka.API.Controllers
 
         // DELETE api/<ProductController>
         [HttpDelete]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(BaseCommandResponse), 200)]
         [ProducesResponseType(400)]
         public async Task<ActionResult<BaseCommandResponse>> Delete(ProductDeleteDto product)
         {

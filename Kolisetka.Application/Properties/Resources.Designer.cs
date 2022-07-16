@@ -169,11 +169,83 @@ namespace Kolisetka.Application.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu User creation failed..
+        /// </summary>
+        public static string User_Creation_Failure {
+            get {
+                return ResourceManager.GetString("User.Creation.Failure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu User creation successful..
+        /// </summary>
+        public static string User_Creation_Success {
+            get {
+                return ResourceManager.GetString("User.Creation.Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu {PropertyName} is not valid..
+        /// </summary>
+        public static string User_Validator_Email {
+            get {
+                return ResourceManager.GetString("User.Validator.Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu {PropertyName} already exists..
+        /// </summary>
+        public static string User_Validator_Exist {
+            get {
+                return ResourceManager.GetString("User.Validator.Exist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu User does not exist or invalid password..
         /// </summary>
         public static string User_Validator_NotExistsOrInvalidPassword {
             get {
                 return ResourceManager.GetString("User.Validator.NotExistsOrInvalidPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu {PropertyName} must contain minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.
+        /// </summary>
+        public static string User_Validator_Password {
+            get {
+                return ResourceManager.GetString("User.Validator.Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu {PropertyName} is required..
+        /// </summary>
+        public static string User_Validator_Required {
+            get {
+                return ResourceManager.GetString("User.Validator.Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu {PropertyName} must not exceed {MaxLength} characters..
+        /// </summary>
+        public static string User_Validator_TooLong {
+            get {
+                return ResourceManager.GetString("User.Validator.TooLong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu {PropertyName} must exceed {MinLength} characters..
+        /// </summary>
+        public static string User_Validator_TooShort {
+            get {
+                return ResourceManager.GetString("User.Validator.TooShort", resourceCulture);
             }
         }
     }

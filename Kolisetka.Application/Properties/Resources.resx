@@ -153,7 +153,31 @@
   <data name="Product.Validator.TooLong" xml:space="preserve">
     <value>{PropertyName} must not exceed {MaxLength} characters.</value>
   </data>
+  <data name="User.Creation.Failure" xml:space="preserve">
+    <value>User creation failed.</value>
+  </data>
+  <data name="User.Creation.Success" xml:space="preserve">
+    <value>User creation successful.</value>
+  </data>
+  <data name="User.Validator.Email" xml:space="preserve">
+    <value>{PropertyName} is not valid.</value>
+  </data>
+  <data name="User.Validator.Exist" xml:space="preserve">
+    <value>{PropertyName} already exists.</value>
+  </data>
   <data name="User.Validator.NotExistsOrInvalidPassword" xml:space="preserve">
     <value>User does not exist or invalid password.</value>
+  </data>
+  <data name="User.Validator.Password" xml:space="preserve">
+    <value>{PropertyName} must contain minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character</value>
+  </data>
+  <data name="User.Validator.Required" xml:space="preserve">
+    <value>{PropertyName} is required.</value>
+  </data>
+  <data name="User.Validator.TooLong" xml:space="preserve">
+    <value>{PropertyName} must not exceed {MaxLength} characters.</value>
+  </data>
+  <data name="User.Validator.TooShort" xml:space="preserve">
+    <value>{PropertyName} must exceed {MinLength} characters.</value>
   </data>
 </root>
