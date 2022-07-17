@@ -5,11 +5,11 @@ using Kolisetka.Application.Properties;
 
 namespace Kolisetka.Application.Validators
 {
-    public class UserCommandValidator : AbstractValidator<CreateUserCommand>
+    public class UserCreateValidator : AbstractValidator<CreateUserCommand>
     {
         private readonly IAuthRepository _authRepository;
 
-        public UserCommandValidator(IAuthRepository authRepository)
+        public UserCreateValidator(IAuthRepository authRepository)
         {
             _authRepository = authRepository;
 

@@ -1,6 +1,8 @@
-﻿using Kolisetka.Application.Features.User.Requests.Queries;
+﻿using Kolisetka.Application.Features.User.Requests.Commands;
+using Kolisetka.Application.Features.User.Requests.Queries;
 using Kolisetka.Application.Responses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kolisetka.API.Controllers
@@ -20,6 +22,15 @@ namespace Kolisetka.API.Controllers
         public async Task<ActionResult<AuthResponse>> Login(GetUserRequest query)
         {
             var response = await _mediator.Send(query);
+
+            return Ok(response);
+        }
+
+        [HttpPost("register")]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<BaseCommandResponse>> Register(CreateUserCommand command)
+        {
+            var response = await _mediator.Send(command);
 
             return Ok(response);
         }

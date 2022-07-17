@@ -169,7 +169,7 @@
     <value>User does not exist or invalid password.</value>
   </data>
   <data name="User.Validator.Password" xml:space="preserve">
-    <value>{PropertyName} must contain minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character</value>
+    <value>{PropertyName} must contain minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.</value>
   </data>
   <data name="User.Validator.Required" xml:space="preserve">
     <value>{PropertyName} is required.</value>

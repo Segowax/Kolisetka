@@ -214,7 +214,7 @@ namespace Kolisetka.Application.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu {PropertyName} must contain minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu {PropertyName} must contain minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character..
         /// </summary>
         public static string User_Validator_Password {
             get {

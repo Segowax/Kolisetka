@@ -27,7 +27,7 @@ namespace Kolisetka.Application.Features.User.Handlers.Commands
         public async Task<BaseCommandResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             var response = new BaseCommandResponse();
-            var validator = new UserCommandValidator(_authRepository);
+            var validator = new UserCreateValidator(_authRepository);
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
             if (!validationResult.IsValid)
@@ -43,7 +43,7 @@ namespace Kolisetka.Application.Features.User.Handlers.Commands
                 response.Success = true;
                 response.Message = Resources.User_Creation_Success;
             }
-            var user = _mapper.Map<MyUser.User>(request);
+            var user = _mapper.Map<MyUser.User>(request.User);
 
             await _authRepository.Register(user, request.Password);
 

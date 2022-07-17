@@ -1,3 +1,4 @@
+using Kolisetka.API.Extensions;
 using Kolisetka.Application;
 using Kolisetka.Identity;
 using Kolisetka.Persistence;
@@ -74,5 +75,9 @@ app.UseAuthorization();
 app.UseCors("MyCorsPolicy");
 
 app.MapControllers();
+
+// Migrate databases
+MigrationBuilderExtension.SyncMigrations<KolisetkaDbContext>(app);
+MigrationBuilderExtension.SyncMigrations<KolisetkaIdentityDbContext>(app);
 
 app.Run();

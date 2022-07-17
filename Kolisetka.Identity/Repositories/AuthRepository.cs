@@ -85,7 +85,7 @@ namespace Kolisetka.Identity.Repositories
             var result = await _userManager.CreateAsync(command, password);
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(command, "Employee");                
+                await _userManager.AddToRoleAsync(command, "User");                
             }
         }
 
