@@ -135,8 +135,20 @@
   <data name="Test.ValidUser.Id" xml:space="preserve">
     <value>0be5b79b-d566-4fb1-b9f7-9aa1115d889b</value>
   </data>
+  <data name="Test.ValidUser.NewEmail" xml:space="preserve">
+    <value>jan@brzechwa.com</value>
+  </data>
+  <data name="Test.ValidUser.NewFirstName" xml:space="preserve">
+    <value>Jan</value>
+  </data>
+  <data name="Test.ValidUser.NewLastName" xml:space="preserve">
+    <value>Brzechwa</value>
+  </data>
+  <data name="Test.ValidUser.NewUserName" xml:space="preserve">
+    <value>PiriPiri</value>
+  </data>
   <data name="Test.ValidUser.Password" xml:space="preserve">
-    <value>kotyToBumBum</value>
+    <value>kotyToBumBum!2</value>
   </data>
   <data name="Test.ValidUser.UserName" xml:space="preserve">
     <value>user@localhost.com</value>

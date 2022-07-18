@@ -115,7 +115,43 @@ namespace Kolisetka.Application.UnitTests.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu kotyToBumBum.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu jan@brzechwa.com.
+        /// </summary>
+        internal static string Test_ValidUser_NewEmail {
+            get {
+                return ResourceManager.GetString("Test.ValidUser.NewEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Jan.
+        /// </summary>
+        internal static string Test_ValidUser_NewFirstName {
+            get {
+                return ResourceManager.GetString("Test.ValidUser.NewFirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Brzechwa.
+        /// </summary>
+        internal static string Test_ValidUser_NewLastName {
+            get {
+                return ResourceManager.GetString("Test.ValidUser.NewLastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu PiriPiri.
+        /// </summary>
+        internal static string Test_ValidUser_NewUserName {
+            get {
+                return ResourceManager.GetString("Test.ValidUser.NewUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu kotyToBumBum!2.
         /// </summary>
         internal static string Test_ValidUser_Password {
             get {

@@ -7,30 +7,37 @@ using Microsoft.AspNetCore.Identity;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Kolisetka.Application.UnitTests.Mocks
 {
     internal class MockAuthRepository
     {
+        private static readonly List<User> _users;
+        private static readonly PasswordHasher<User> _hasher;
+
+        static MockAuthRepository()
+        {
+            _hasher = new PasswordHasher<User>();
+            _users = GetUsersList(_hasher);
+        }
+
         internal static Mock<IAuthRepository> GetAuthRepository()
         {
-            var hasher = new PasswordHasher<User>();
-            var users = GetUsersList(hasher);
-
             var mockRepo = new Mock<IAuthRepository>();
             mockRepo.Setup(r => r.Login(It.IsAny<GetUserRequest>())).ReturnsAsync((GetUserRequest queryUser) =>
             {
                 var response = new AuthResponse();
                 var responseUser = new User();
-                foreach (var user in users)
+                foreach (var user in _users)
                 {
-                    if(queryUser.Email.Equals(user.Email))
+                    if (queryUser.Email.Equals(user.Email))
                     {
                         responseUser = user;
                         break;
                     }
                 }
-                var result = hasher.VerifyHashedPassword(responseUser, responseUser.PasswordHash, queryUser.Password);
+                var result = _hasher.VerifyHashedPassword(responseUser, responseUser.PasswordHash, queryUser.Password);
                 if (result == PasswordVerificationResult.Failed)
                 {
                     response.Success = false;
@@ -47,11 +54,33 @@ namespace Kolisetka.Application.UnitTests.Mocks
 
                 return response;
             });
+            mockRepo.Setup(r => r.Register(It.IsAny<User>(), It.IsAny<string>())).Returns((User newUser, string password) =>
+            {
+                newUser.Id = Guid.NewGuid().ToString().ToUpper();
+                newUser.ConcurrencyStamp = Guid.NewGuid().ToString().ToUpper();
+                newUser.SecurityStamp = Guid.NewGuid().ToString().ToUpper();
+                newUser.PasswordHash = _hasher.HashPassword(newUser, password);
+                _users.Add(newUser);
+
+                return Task.CompletedTask;
+            });
+
             mockRepo.Setup(r => r.IsEmailExist(It.IsAny<string>())).ReturnsAsync((string email) =>
             {
-                foreach (var user in users)
+                foreach (var user in _users)
                 {
                     if (user.Email.Equals(email))
+                        return true;
+                }
+
+                return false;
+            });
+
+            mockRepo.Setup(r => r.IsUserNameExist(It.IsAny<string>())).ReturnsAsync((string userName) =>
+            {
+                foreach (var user in _users)
+                {
+                    if (user.UserName.Equals(userName))
                         return true;
                 }
 
@@ -61,7 +90,7 @@ namespace Kolisetka.Application.UnitTests.Mocks
             return mockRepo;
         }
 
-        private static List<User> GetUsersList(PasswordHasher<User> hasher)
+        private static List<User> GetUsersList(PasswordHasher<User> _hasher)
         {
             var users = new List<User>
             {
@@ -89,9 +118,19 @@ namespace Kolisetka.Application.UnitTests.Mocks
                 }
             };
             foreach (var user in users)
-                user.PasswordHash = hasher.HashPassword(user, "kotyToBumBum");
+                user.PasswordHash = _hasher.HashPassword(user, "kotyToBumBum!2");
 
             return users;
+        }
+
+        internal static List<User> GetUsers()
+        {
+            return _users;
+        }
+
+        internal static PasswordHasher<User> GetHasher()
+        {
+            return _hasher;
         }
     }
 }
