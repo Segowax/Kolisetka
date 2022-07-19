@@ -30,17 +30,17 @@ namespace Kolisetka.Application.UnitTests.Users.Queries
             var result = await handler.Handle
                 (new GetUserRequest
                 {
-                    Email = TestProperties.Resources.Test_ValidUser_Email,
-                    Password = TestProperties.Resources.Test_ValidUser_Password
+                    Email = TestProperties.Resources.Test_ValidUser_GetEmail,
+                    Password = TestProperties.Resources.Test_ValidUser_NewPassword
                 }, CancellationToken.None);
 
             result.ShouldBeOfType<AuthResponse>();
             result.Success.ShouldBeTrue();
-            result.Email.ShouldBe(TestProperties.Resources.Test_ValidUser_Email);
+            result.Email.ShouldBe(TestProperties.Resources.Test_ValidUser_GetEmail);
             result.Message.ShouldBeNull();
-            result.Id.ShouldBe(TestProperties.Resources.Test_ValidUser_Id);
+            result.Id.ShouldBe(TestProperties.Resources.Test_ValidUser_GetId);
             result.Token.ShouldNotBeNull();
-            result.UserName.ShouldBe(TestProperties.Resources.Test_ValidUser_UserName);
+            result.UserName.ShouldBe(TestProperties.Resources.Test_ValidUser_GetUserName);
         }
 
         [Fact]
@@ -50,8 +50,8 @@ namespace Kolisetka.Application.UnitTests.Users.Queries
             var result = await handler.Handle
                 (new GetUserRequest
                 {
-                    Email = TestProperties.Resources.Test_InvalidUser_Email,
-                    Password = TestProperties.Resources.Test_InvalidUser_Password
+                    Email = TestProperties.Resources.Test_InvalidUser_GetEmail,
+                    Password = TestProperties.Resources.Test_InvalidUser_GetPassword
                 }, CancellationToken.None);
 
             result.ShouldBeOfType<AuthResponse>();

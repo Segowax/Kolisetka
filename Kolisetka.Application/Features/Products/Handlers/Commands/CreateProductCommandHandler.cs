@@ -28,7 +28,7 @@ namespace Kolisetka.Application.Features.Products.Handlers.Commands
         {
             var response = new BaseCommandResponse();
             var validator = new ProductCreateValidator();
-            var validationResult = await validator.ValidateAsync(request.ProductCreateDto);
+            var validationResult = await validator.ValidateAsync(request.ProductCreateDto, cancellationToken);
 
             if (!validationResult.IsValid)
             {

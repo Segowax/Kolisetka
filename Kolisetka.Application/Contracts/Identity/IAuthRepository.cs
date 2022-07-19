@@ -8,7 +8,7 @@ namespace Kolisetka.Application.Contracts.Identity
     public interface IAuthRepository
     {
         Task<AuthResponse> Login(GetUserRequest query);
-        Task Register(User command, string password);
+        Task Register(User command, string providedPassword);
         Task<bool> IsEmailExist(string email);
         Task<bool> IsUserNameExist(string userName);
     }

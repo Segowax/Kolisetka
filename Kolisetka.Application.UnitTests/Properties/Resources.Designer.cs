@@ -63,18 +63,63 @@ namespace Kolisetka.Application.UnitTests.Properties {
         /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu admin1@localhost.com.
         /// </summary>
-        internal static string Test_InvalidUser_Email {
+        internal static string Test_InvalidUser_GetEmail {
             get {
-                return ResourceManager.GetString("Test.InvalidUser.Email", resourceCulture);
+                return ResourceManager.GetString("Test.InvalidUser.GetEmail", resourceCulture);
             }
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu pieskiToBumBum.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu kotyToBumBum.
         /// </summary>
-        internal static string Test_InvalidUser_Password {
+        internal static string Test_InvalidUser_GetPassword {
             get {
-                return ResourceManager.GetString("Test.InvalidUser.Password", resourceCulture);
+                return ResourceManager.GetString("Test.InvalidUser.GetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu bangBang.com.
+        /// </summary>
+        internal static string Test_InvalidUser_NewEmail {
+            get {
+                return ResourceManager.GetString("Test.InvalidUser.NewEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu StringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStrinStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringString.
+        /// </summary>
+        internal static string Test_InvalidUser_NewFirstName {
+            get {
+                return ResourceManager.GetString("Test.InvalidUser.NewFirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu StringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStrinStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringString.
+        /// </summary>
+        internal static string Test_InvalidUser_NewLastName {
+            get {
+                return ResourceManager.GetString("Test.InvalidUser.NewLastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu kotyToBumBum.
+        /// </summary>
+        internal static string Test_InvalidUser_NewPassword {
+            get {
+                return ResourceManager.GetString("Test.InvalidUser.NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu StringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStrinStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringStringString.
+        /// </summary>
+        internal static string Test_InvalidUser_NewUserName {
+            get {
+                return ResourceManager.GetString("Test.InvalidUser.NewUserName", resourceCulture);
             }
         }
         
@@ -99,18 +144,27 @@ namespace Kolisetka.Application.UnitTests.Properties {
         /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu user@localhost.com.
         /// </summary>
-        internal static string Test_ValidUser_Email {
+        internal static string Test_ValidUser_GetEmail {
             get {
-                return ResourceManager.GetString("Test.ValidUser.Email", resourceCulture);
+                return ResourceManager.GetString("Test.ValidUser.GetEmail", resourceCulture);
             }
         }
         
         /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu 0be5b79b-d566-4fb1-b9f7-9aa1115d889b.
         /// </summary>
-        internal static string Test_ValidUser_Id {
+        internal static string Test_ValidUser_GetId {
             get {
-                return ResourceManager.GetString("Test.ValidUser.Id", resourceCulture);
+                return ResourceManager.GetString("Test.ValidUser.GetId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu user@localhost.com.
+        /// </summary>
+        internal static string Test_ValidUser_GetUserName {
+            get {
+                return ResourceManager.GetString("Test.ValidUser.GetUserName", resourceCulture);
             }
         }
         
@@ -142,29 +196,20 @@ namespace Kolisetka.Application.UnitTests.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu kotyToBumBum!2.
+        /// </summary>
+        internal static string Test_ValidUser_NewPassword {
+            get {
+                return ResourceManager.GetString("Test.ValidUser.NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu PiriPiri.
         /// </summary>
         internal static string Test_ValidUser_NewUserName {
             get {
                 return ResourceManager.GetString("Test.ValidUser.NewUserName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu kotyToBumBum!2.
-        /// </summary>
-        internal static string Test_ValidUser_Password {
-            get {
-                return ResourceManager.GetString("Test.ValidUser.Password", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu user@localhost.com.
-        /// </summary>
-        internal static string Test_ValidUser_UserName {
-            get {
-                return ResourceManager.GetString("Test.ValidUser.UserName", resourceCulture);
             }
         }
     }

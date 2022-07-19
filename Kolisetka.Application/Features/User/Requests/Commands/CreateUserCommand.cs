@@ -6,7 +6,6 @@ namespace Kolisetka.Application.Features.User.Requests.Commands
 {
     public class CreateUserCommand : IRequest<BaseCommandResponse>
     {
-        public UserCreateDto User { get; set; }
-        public string Password { get; set; }
+        public UserCreateDto UserCreateDto { get; set; }
     }
 }

@@ -54,12 +54,13 @@ namespace Kolisetka.Application.UnitTests.Mocks
 
                 return response;
             });
-            mockRepo.Setup(r => r.Register(It.IsAny<User>(), It.IsAny<string>())).Returns((User newUser, string password) =>
+            mockRepo.Setup
+                (r => r.Register(It.IsAny<User>(), It.IsAny<string>())).Returns((User newUser, string providedPassword) =>
             {
                 newUser.Id = Guid.NewGuid().ToString().ToUpper();
                 newUser.ConcurrencyStamp = Guid.NewGuid().ToString().ToUpper();
                 newUser.SecurityStamp = Guid.NewGuid().ToString().ToUpper();
-                newUser.PasswordHash = _hasher.HashPassword(newUser, password);
+                newUser.PasswordHash = _hasher.HashPassword(newUser, providedPassword);
                 _users.Add(newUser);
 
                 return Task.CompletedTask;

@@ -14,6 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
+using ApplicationProperties = Kolisetka.Application.Properties;
 using TestProperties = Kolisetka.Application.UnitTests.Properties;
 
 namespace Kolisetka.Application.UnitTests.Users.Commands
@@ -22,8 +23,8 @@ namespace Kolisetka.Application.UnitTests.Users.Commands
     {
         private readonly Mock<IAuthRepository> _mockRepo;
         private readonly IMapper _mapper;
-        private readonly UserCreateDto _userDto;
-        private readonly string _password;
+        private readonly UserCreateDto _validUserDto;
+        private readonly UserCreateDto _invalidUserDto;
 
         public CreateUserCommandHandlerTest()
         {
@@ -33,15 +34,30 @@ namespace Kolisetka.Application.UnitTests.Users.Commands
                 c.AddProfile<MappingProfile>();
             });
             _mapper = mapperConfig.CreateMapper();
-            _userDto = new UserCreateDto()
+            CreateUsers(out _validUserDto, out _invalidUserDto);
+        }
+
+        private static void CreateUsers(out UserCreateDto validUser, out UserCreateDto invalidUser)
+        {
+            validUser = new UserCreateDto()
             {
                 Email = TestProperties.Resources.Test_ValidUser_NewEmail,
                 EmailConfirmed = true,
                 FirstName = TestProperties.Resources.Test_ValidUser_NewFirstName,
                 LastName = TestProperties.Resources.Test_ValidUser_NewLastName,
+                Password = TestProperties.Resources.Test_ValidUser_NewPassword,
                 UserName = TestProperties.Resources.Test_ValidUser_NewUserName
             };
-            _password = TestProperties.Resources.Test_ValidUser_Password;
+
+            invalidUser = new UserCreateDto()
+            {
+                Email = TestProperties.Resources.Test_InvalidUser_NewEmail,
+                EmailConfirmed = true,
+                FirstName = TestProperties.Resources.Test_ValidUser_NewFirstName,
+                LastName = TestProperties.Resources.Test_ValidUser_NewLastName,
+                Password = TestProperties.Resources.Test_ValidUser_NewPassword,
+                UserName = TestProperties.Resources.Test_ValidUser_NewUserName
+            };
         }
 
         [Fact]
@@ -51,8 +67,7 @@ namespace Kolisetka.Application.UnitTests.Users.Commands
             var result = await handler.Handle
                 (new CreateUserCommand
                 {
-                    User = _userDto,
-                    Password = _password
+                    UserCreateDto = _validUserDto
                 }, CancellationToken.None);
 
             result.ShouldBeOfType<BaseCommandResponse>();
@@ -68,8 +83,30 @@ namespace Kolisetka.Application.UnitTests.Users.Commands
             newUser.FirstName.ShouldBe(TestProperties.Resources.Test_ValidUser_NewFirstName);
             newUser.LastName.ShouldBe(TestProperties.Resources.Test_ValidUser_NewLastName);
             newUser.UserName.ShouldBe(TestProperties.Resources.Test_ValidUser_NewUserName);
-            hasher.VerifyHashedPassword(newUser, newUser.PasswordHash, _password)
+            hasher.VerifyHashedPassword(newUser, newUser.PasswordHash, _validUserDto.Password)
                 .ShouldBe(PasswordVerificationResult.Success);
+        }
+
+        [Fact]
+        public async Task Register_User_With_Failure_Test()
+        {
+            var handler = new CreateUserCommandHandler(_mockRepo.Object, _mapper);
+            var result = await handler.Handle
+                (new CreateUserCommand
+                {
+                    UserCreateDto = _invalidUserDto
+                }, CancellationToken.None);
+
+            result.ShouldBeOfType<BaseCommandResponse>();
+            result.Success.ShouldBeFalse();
+
+            var users = MockAuthRepository.GetUsers();
+            users.Count.ShouldBe(2);
+
+            // invalid email
+            result.Errors[0]
+                .ShouldBe(ApplicationProperties.Resources.User_Validator_Email
+                    .Replace("{PropertyName}", nameof(_invalidUserDto.Email)));
         }
     }
 }

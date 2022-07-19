@@ -80,9 +80,9 @@ namespace Kolisetka.Identity.Repositories
             return jwtSecurityToken;
         }
 
-        public async Task Register(User command, string password)
+        public async Task Register(User command, string providedPassword)
         {
-            var result = await _userManager.CreateAsync(command, password);
+            var result = await _userManager.CreateAsync(command, providedPassword);
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(command, "User");                

@@ -28,7 +28,7 @@ namespace Kolisetka.Application.Features.User.Handlers.Commands
         {
             var response = new BaseCommandResponse();
             var validator = new UserCreateValidator(_authRepository);
-            var validationResult = await validator.ValidateAsync(request, cancellationToken);
+            var validationResult = await validator.ValidateAsync(request.UserCreateDto, cancellationToken);
 
             if (!validationResult.IsValid)
             {
@@ -43,9 +43,9 @@ namespace Kolisetka.Application.Features.User.Handlers.Commands
                 response.Success = true;
                 response.Message = Resources.User_Creation_Success;
             }
-            var user = _mapper.Map<MyUser.User>(request.User);
+            var user = _mapper.Map<MyUser.User>(request.UserCreateDto);
 
-            await _authRepository.Register(user, request.Password);
+            await _authRepository.Register(user, request.UserCreateDto.Password);
 
             return response;
         }
