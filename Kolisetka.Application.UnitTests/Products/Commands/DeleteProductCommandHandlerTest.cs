@@ -41,7 +41,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
         }
 
         [Fact]
-        public async Task Valid_Product_Delete_Test()
+        public async Task Delete_Valid_Product_Test()
         {
             var response = await _handler.Handle
                 (new DeleteProductCommand() { ProductDeleteDto = _productDto }, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
         }
 
         [Fact]
-        public async Task Invalid_Product_Delete_Test()
+        public async Task Delete_Invalid_Product_Test()
         {
             // invalid Id
             _productDto.Id = 10;

@@ -50,7 +50,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
         }
 
         [Fact]
-        public async Task Valid_Product_Add_Test()
+        public async Task Add_Valid_Product_Test()
         {
             var response = await _handler.Handle
                 (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None);
@@ -70,9 +70,9 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
         }
 
         [Fact]
-        public async Task Invalid_Product_Add_Test()
+        public async Task Add_Product_With_Invalid_Price_Test()
         {
-            // invalid price - invalid precision
+            // invalid precision
             _productDto.Price = 10.002m;
             var response = await _handler.Handle
                 (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None);
@@ -81,11 +81,17 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             response.Errors.ShouldNotBeNull();
             response.Errors.Count.ShouldBe(1);
             response.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_InvalidPrecision.Replace("{PropertyName}", nameof(_productDto.Price)));
+            
+            var products = await _mockRepo.Object.GetAllAsync();
+            products.Count.ShouldBe(3);
+        }
 
-            // invalid category - invalid enum
-            _productDto.Price = 10.00m;
+        [Fact]
+        public async Task Add_Product_With_Invalid_Category_Test()
+        {
+            // invalid enum
             _productDto.Category = (Category)3;
-            response = await _handler.Handle
+            var response = await _handler.Handle
                 (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None);
             response.ShouldBeOfType<BaseCommandResponse>();
             response.Success.ShouldBeFalse();
@@ -93,10 +99,16 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             response.Errors.Count.ShouldBe(1);
             response.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_InvalidEnum.Replace("{PropertyName}", nameof(_productDto.Category)));
 
-            // invalid name - null
-            _productDto.Category = Category.Food;
+            var products = await _mockRepo.Object.GetAllAsync();
+            products.Count.ShouldBe(3);
+        }
+
+        [Fact]
+        public async Task Add_Product_With_Invalid_Name_Test()
+        {
+            // null
             _productDto.Name = null;
-            response = await _handler.Handle
+            var response = await _handler.Handle
                 (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None);
             response.ShouldBeOfType<BaseCommandResponse>();
             response.Success.ShouldBeFalse();
@@ -104,7 +116,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             response.Errors.Count.ShouldBe(1);
             response.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_Required.Replace("{PropertyName}", nameof(_productDto.Name)));
 
-            // invalid name - too long
+            // too long
             _productDto.Name = TestProperties.Resources.Test_TooLongString_101;
             response = await _handler.Handle
                 (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None);
@@ -116,10 +128,17 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             MyString = MyString.Replace("{MaxLength}", "100");
             response.Errors[0].ShouldBe(MyString);
 
-            // invalid description - null
-            _productDto.Name = "Zapiekanka";
+            var products = await _mockRepo.Object.GetAllAsync();
+            products.Count.ShouldBe(3);
+
+        }
+
+        [Fact]
+        public async Task Add_Product_With_Invalid_Description_Test()
+        {
+            // null
             _productDto.Description = null;
-            response = await _handler.Handle
+            var response = await _handler.Handle
                 (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None);
             response.ShouldBeOfType<BaseCommandResponse>();
             response.Success.ShouldBeFalse();
@@ -127,7 +146,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             response.Errors.Count.ShouldBe(1);
             response.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_Required.Replace("{PropertyName}", nameof(_productDto.Description)));
 
-            // invalid description - too long
+            // too long
             _productDto.Description = TestProperties.Resources.Test_TooLongString_1001;
             response = await _handler.Handle
                 (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None);
