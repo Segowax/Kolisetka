@@ -51,7 +51,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
         }
 
         [Fact]
-        public async Task Valid_Product_Update_Test()
+        public async Task Update_Product_With_Valid_Data()
         {
             var response = await _handler.Handle
                 (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
@@ -71,9 +71,8 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
         }
 
         [Fact]
-        public async Task Invalid_Product_Update_Test()
+        public async Task Update_Product_With_Invalid_Id_Test()
         {
-            // invalid id
             _productDto.Id = 5;
             var response = await _handler.Handle
                 (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
@@ -83,10 +82,14 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             response.Errors.Count.ShouldBe(1);
             response.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_NotExists.Replace("{PropertyName}", nameof(_productDto.Id)));
 
-            // invalid category
-            _productDto.Id = 2;
+            var products = await _mockRepo.Object.GetAllAsync();
+            products.Count.ShouldBe(3);
+        }
+        [Fact]
+        public async Task Update_Product_With_Invalid_Category_Test()
+        {
             _productDto.Category = (Category)3;
-            response = await _handler.Handle
+            var response = await _handler.Handle
                 (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
             response.ShouldBeOfType<BaseCommandResponse>();
             response.Success.ShouldBeFalse();
@@ -94,10 +97,16 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             response.Errors.Count.ShouldBe(1);
             response.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_InvalidEnum.Replace("{PropertyName}", nameof(_productDto.Category)));
 
+            var products = await _mockRepo.Object.GetAllAsync();
+            products.Count.ShouldBe(3);
+        }
+
+        [Fact]
+        public async Task Update_Product_With_Invalid_Description_Test()
+        {
             // invalid description - null
-            _productDto.Category = Category.Food;
             _productDto.Description = null;
-            response = await _handler.Handle
+            var response = await _handler.Handle
                 (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
             response.ShouldBeOfType<BaseCommandResponse>();
             response.Success.ShouldBeFalse();
@@ -114,10 +123,16 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             MyString = MyString.Replace("{MaxLength}", "1000");
             response.Errors[0].ShouldBe(MyString);
 
+            var products = await _mockRepo.Object.GetAllAsync();
+            products.Count.ShouldBe(3);
+        }
+
+        [Fact]
+        public async Task Update_Product_With_Invalid_Name_Test()
+        {
             // invalid name - null
-            _productDto.Description = "Najsmaczniejsza golonka na całym Kozanownie!";
             _productDto.Name = null;
-            response = await _handler.Handle
+            var response = await _handler.Handle
                 (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
             response.ShouldBeOfType<BaseCommandResponse>();
             response.Success.ShouldBeFalse();
@@ -138,16 +153,24 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             MyString = MyString.Replace("{MaxLength}", "100");
             response.Errors[0].ShouldBe(MyString);
 
-            // invalid price
-            _productDto.Name = "Golonka";
+            var products = await _mockRepo.Object.GetAllAsync();
+            products.Count.ShouldBe(3);
+        }
+
+        [Fact]
+        public async Task Update_Product_With_Invalid_Price_Tes()
+        {
             _productDto.Price = 10.002m;
-            response = await _handler.Handle
+            var response = await _handler.Handle
                 (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
             response.ShouldBeOfType<BaseCommandResponse>();
             response.Success.ShouldBeFalse();
             response.Errors.ShouldNotBeNull();
             response.Errors.Count.ShouldBe(1);
             response.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_InvalidPrecision.Replace("{PropertyName}", nameof(_productDto.Price)));
+
+            var products = await _mockRepo.Object.GetAllAsync();
+            products.Count.ShouldBe(3);
         }
     }
 }
