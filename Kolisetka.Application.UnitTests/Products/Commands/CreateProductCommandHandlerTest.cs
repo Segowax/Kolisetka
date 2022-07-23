@@ -10,7 +10,6 @@ using Kolisetka.Domain;
 using Moq;
 using Shouldly;
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -60,7 +59,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             var products = await _mockRepo.Object.GetAllAsync();
             products.Count.ShouldBe(4);
 
-            var addedProduct = products.LastOrDefault();
+            var addedProduct = products[^1];
             addedProduct.Category.ShouldBe(Category.Food);
             addedProduct.DateCreated.ShouldBe(new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day, DateTime.UtcNow.Hour, DateTime.UtcNow.Minute, 0));
             addedProduct.DateUpdated.ShouldBe(new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day, DateTime.UtcNow.Hour, DateTime.UtcNow.Minute, 0));
