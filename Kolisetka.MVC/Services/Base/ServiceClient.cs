@@ -31,12 +31,12 @@ namespace Kolisetka.MVC.Services.Base
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<BaseCommandResponse> RegisterAsync(CreateUserCommand body);
+        System.Threading.Tasks.Task<BaseCommandResponse> RegisterAsync(UserCreateDto body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<BaseCommandResponse> RegisterAsync(CreateUserCommand body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<BaseCommandResponse> RegisterAsync(UserCreateDto body, System.Threading.CancellationToken cancellationToken);
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -191,7 +191,7 @@ namespace Kolisetka.MVC.Services.Base
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<BaseCommandResponse> RegisterAsync(CreateUserCommand body)
+        public virtual System.Threading.Tasks.Task<BaseCommandResponse> RegisterAsync(UserCreateDto body)
         {
             return RegisterAsync(body, System.Threading.CancellationToken.None);
         }
@@ -199,7 +199,7 @@ namespace Kolisetka.MVC.Services.Base
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<BaseCommandResponse> RegisterAsync(CreateUserCommand body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<BaseCommandResponse> RegisterAsync(UserCreateDto body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append("api/Account/register");
@@ -896,14 +896,6 @@ namespace Kolisetka.MVC.Services.Base
 
         [System.Runtime.Serialization.EnumMember(Value = @"AlkoholicDrink")]
         AlkoholicDrink = 2,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreateUserCommand
-    {
-        [Newtonsoft.Json.JsonProperty("userCreateDto", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public UserCreateDto UserCreateDto { get; set; }
 
     }
 

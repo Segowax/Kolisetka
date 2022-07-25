@@ -22,13 +22,28 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
-                        </li>
+                        @if (User.Identity != null)
+                            if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Products</a>
+                                </li>
+                                {
+                                    if (User.IsInRole("Administrator"))
+                                    {
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toogle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Manage
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                                <a class="dropdown-item text-dark" asp-controller="Product" asp-action="Index">Products</a>
+                                            </div>
+                                        </li>
+                                    }
+                                }
+                            }
                     </ul>
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>

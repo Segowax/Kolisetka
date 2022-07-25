@@ -23,6 +23,7 @@ namespace Kolisetka.MVC.Services
         {
             try
             {
+                AddBearerToken();
                 var response = new Response<int>();
                 var productToAdd = _mapper.Map<ProductCreateDto>(product);
                 var apiResponse = await _client.ProductPOSTAsync(productToAdd);
@@ -46,6 +47,7 @@ namespace Kolisetka.MVC.Services
         {
             try
             {
+                AddBearerToken();
                 var response = new Response<int>();
                 var productToDelete = _mapper.Map<ProductDeleteDto>(product);
                 var apiResponse = await _client.ProductDELETEAsync(productToDelete);
@@ -68,6 +70,7 @@ namespace Kolisetka.MVC.Services
 
         public async Task<ProductGetVM> GetProductDetails(int id)
         {
+            AddBearerToken();
             var product = await _client.ProductGETAsync(id);
 
             return _mapper.Map<ProductGetVM>(product);
@@ -75,6 +78,7 @@ namespace Kolisetka.MVC.Services
 
         public async Task<List<ProductGetVM>> GetProducts()
         {
+            AddBearerToken();
             var products = await _client.ProductAllAsync();
 
             return _mapper.Map<List<ProductGetVM>>(products);
@@ -84,6 +88,7 @@ namespace Kolisetka.MVC.Services
         {
             try
             {
+                AddBearerToken();
                 var response = new Response<int>();
                 var productToUpdate = _mapper.Map<ProductUpdateDto>(product);
                 var apiResponse = await _client.ProductPUTAsync(productToUpdate);

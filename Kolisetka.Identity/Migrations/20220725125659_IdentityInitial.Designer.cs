@@ -12,14 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kolisetka.Identity.Migrations
 {
     [DbContext(typeof(KolisetkaIdentityDbContext))]
-    [Migration("20220713144231_IdentityInitial")]
+    [Migration("20220725125659_IdentityInitial")]
     partial class IdentityInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.6")
+                .HasAnnotation("ProductVersion", "6.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -99,7 +99,7 @@ namespace Kolisetka.Identity.Migrations
                         {
                             Id = "0be5b79b-d566-4fb1-b9f7-9aa1115d889b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2bbb8859-80b6-4412-b1ed-5201e0768266",
+                            ConcurrencyStamp = "fce57489-4b53-497e-a933-9a805e36a9bc",
                             Email = "user@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -107,9 +107,9 @@ namespace Kolisetka.Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHkapHF2fNXKpwIpbCK79akcJVb6Ru4pQNAGAseOM59qVtccyynhvFBayL/m3VgmEg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEALfJrI7IBNpMg1QXzCuQX4pdr1Rm2XsjVWvHvLf5kO1TD1hr3mMrKwxTam2TuDzEA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1a3e5666-d3c7-48ea-81a9-a6d887fb2fd6",
+                            SecurityStamp = "c2a9ae95-d930-47e9-9ba9-4c29ff539441",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         },
@@ -117,7 +117,7 @@ namespace Kolisetka.Identity.Migrations
                         {
                             Id = "cfd8e76a-aa81-41b3-8623-a6882006a126",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "111e0f29-ad98-4b35-b2cf-479f4f411446",
+                            ConcurrencyStamp = "6fc2bd0f-3b3f-44b4-8e63-7e021f533ccd",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -125,9 +125,9 @@ namespace Kolisetka.Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDhn7HucMU46h9xx/BMnKjYG2OxtcYA+QsSfE9EMNPBsoUA3PjYm31Jeo3roE5gs/g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEO2mQ/ZxAhmmepzp3MomFE/MzwODilbv/P+mxUXpwBmE9ORkgbUTeS7mSt0LgMllAA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "375865db-0d66-40d7-ab4f-1c442ce6b406",
+                            SecurityStamp = "392b3c8b-0c8a-4811-8cb0-032e4a5f27bd",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -163,14 +163,14 @@ namespace Kolisetka.Identity.Migrations
                         new
                         {
                             Id = "8b693986-0d12-487f-9fde-e0e983e2f51c",
-                            ConcurrencyStamp = "2b67acb9-0a43-4e9b-aea6-3f6401965f78",
+                            ConcurrencyStamp = "df5c5041-ddf4-419c-881e-a2de9e5f7300",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "c619043f-2923-4180-95fc-1104ed3ddc3e",
-                            ConcurrencyStamp = "e750873d-2f48-4bbe-b6d2-82c4550abcae",
+                            ConcurrencyStamp = "99e10dda-a876-4ddf-95fd-2b9f22874804",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

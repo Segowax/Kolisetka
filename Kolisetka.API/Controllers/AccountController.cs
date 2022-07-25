@@ -1,4 +1,5 @@
-﻿using Kolisetka.Application.Features.User.Requests.Commands;
+﻿using Kolisetka.Application.DTOs.DtoUser;
+using Kolisetka.Application.Features.User.Requests.Commands;
 using Kolisetka.Application.Features.User.Requests.Queries;
 using Kolisetka.Application.Responses;
 using MediatR;
@@ -28,9 +29,9 @@ namespace Kolisetka.API.Controllers
 
         [HttpPost("register")]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<BaseCommandResponse>> Register(CreateUserCommand command)
+        public async Task<ActionResult<BaseCommandResponse>> Register(UserCreateDto command)
         {
-            var response = await _mediator.Send(command);
+            var response = await _mediator.Send(new CreateUserCommand() { UserCreateDto = command });
 
             return Ok(response);
         }

@@ -32,8 +32,8 @@ namespace Kolisetka.Identity.Configurations
                 NormalizedUserName = "ADMIN@LOCALHOST.COM",
                 EmailConfirmed = true
             };
-            user1.PasswordHash = hasher.HashPassword(user1, "kotyToBumBum");
-            user2.PasswordHash = hasher.HashPassword(user2, "kotyToBumBum");
+            user1.PasswordHash = hasher.HashPassword(user1, "kotyToBumBum!2");
+            user2.PasswordHash = hasher.HashPassword(user2, "kotyToBumBum!2");
 
             builder.HasData(user1, user2);
         }
