@@ -1,5 +1,6 @@
 ﻿using Kolisetka.MVC.Contracts;
 using Kolisetka.MVC.Models.User;
+using Kolisetka.MVC.Properties;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kolisetka.MVC.Controllers
@@ -13,7 +14,7 @@ namespace Kolisetka.MVC.Controllers
             _authService = authService;
         }
 
-        public IActionResult Login(string? returnUrl = null)
+        public IActionResult Login()
         {
             return View();
         }
@@ -29,7 +30,7 @@ namespace Kolisetka.MVC.Controllers
                     return LocalRedirect(returnUrl);
             }
 
-            ModelState.AddModelError("", "Log attempt failed. Please try again.");
+            ModelState.AddModelError("", Resources.UserController_LoginFailed);
 
             return View(login);
         }
@@ -37,6 +38,30 @@ namespace Kolisetka.MVC.Controllers
         public IActionResult Register()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterVM userRegister)
+        {
+            if (ModelState.IsValid)
+            {
+                var returnUrl = Url.Content("~/");
+                var isCreated = await _authService.Register(userRegister);
+                if (isCreated)
+                    return LocalRedirect(returnUrl);
+            }
+            ModelState.AddModelError("", Resources.UserController_RegisterFailed);
+
+            return View(userRegister);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout(string returnUrl)
+        {
+            returnUrl ??= Url.Content("~/");
+            await _authService.Logout();
+
+            return LocalRedirect(returnUrl);    
         }
     }
 }
