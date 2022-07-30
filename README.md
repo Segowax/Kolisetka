@@ -7,3 +7,5 @@ Simple CRUD application.
 Technology: .NET 6, EF Core, Razor, NSwag
 
 Libraries: FluentValidation
+
+Future: Desktop app working on Android.
