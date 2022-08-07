@@ -69,6 +69,7 @@ namespace Kolisetka.MVC.Services
 
         public async Task<bool> Register(RegisterVM userRegister)
         {
+            AddBearerToken();
             var registerRequest = _mapper.Map<UserCreateDto>(userRegister);
             var response = await _client.RegisterAsync(registerRequest);
             if (response.Success == true)
