@@ -27,6 +27,7 @@ namespace Kolisetka.Identity
                 .AddEntityFrameworkStores<KolisetkaIdentityDbContext>().AddDefaultTokenProviders();
 
             services.AddTransient<IAuthRepository, AuthRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
 
             services.AddAuthentication(options =>
             {

@@ -21,6 +21,7 @@ namespace Kolisetka.Application.Profiles
             CreateMap<User, UserCreateDto>()
                 .ForMember(member => member.Password, opt => opt.Ignore())
                 .ReverseMap();
+            CreateMap<User, UserGetDto>().ReverseMap();
             #endregion
         }
     }
