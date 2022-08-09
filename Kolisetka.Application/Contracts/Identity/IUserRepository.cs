@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 
 namespace Kolisetka.Application.Contracts.Identity
 {
-    public  interface IUserRepository
+    public interface IUserRepository
     {
-        Task<List<User>> GetUsers();
+        Task<IReadOnlyList<User>> GetAllUsersAsync();
     }
 }

@@ -14,7 +14,7 @@ namespace Kolisetka.Identity.Repositories
             _userManager = userManager;
         }
 
-        public async Task<List<User>> GetUsers()
+        public async Task<IReadOnlyList<User>> GetAllUsersAsync()
         {
             return await _userManager.Users.ToListAsync();
         }
