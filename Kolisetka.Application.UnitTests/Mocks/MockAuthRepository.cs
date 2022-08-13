@@ -91,7 +91,7 @@ namespace Kolisetka.Application.UnitTests.Mocks
             return mockRepo;
         }
 
-        private static List<User> GetUsersList(PasswordHasher<User> _hasher)
+        public static List<User> GetUsersList(PasswordHasher<User> _hasher)
         {
             var users = new List<User>
             {
