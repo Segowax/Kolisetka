@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using Kolisetka.Application.Contracts.Identity;
+using Kolisetka.Application.DTOs.DtoUser;
 using Kolisetka.Application.Features.User.Handlers.Queries;
 using Kolisetka.Application.Features.User.Requests.Queries;
 using Kolisetka.Application.Profiles;
 using Kolisetka.Application.UnitTests.Mocks;
 using Moq;
 using Shouldly;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -34,6 +36,7 @@ namespace Kolisetka.Application.UnitTests.Users.Queries
             var result = await handler.Handle(new GetUsersListRequest { }, CancellationToken.None);
 
             result.Count.ShouldBe(2);
+            result.ShouldBeOfType(typeof(List<UserGetDto>));
         }
     }
 }

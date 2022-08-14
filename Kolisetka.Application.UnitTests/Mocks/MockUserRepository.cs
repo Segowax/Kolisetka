@@ -21,10 +21,7 @@ namespace Kolisetka.Application.UnitTests.Mocks
         internal static Mock<IUserRepository> GetUserRepository()
         {
             var mockRepo = new Mock<IUserRepository>();
-            mockRepo.Setup(r => r.GetAllUsersAsync()).ReturnsAsync((GetUsersListRequest query) =>
-            {
-                return _users;
-            });
+            mockRepo.Setup(r => r.GetAllUsersAsync()).ReturnsAsync(_users);
 
             return mockRepo;
         }
