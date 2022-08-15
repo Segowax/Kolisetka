@@ -5,6 +5,7 @@ using Kolisetka.Application.Features.User.Handlers.Queries;
 using Kolisetka.Application.Features.User.Requests.Queries;
 using Kolisetka.Application.Profiles;
 using Kolisetka.Application.UnitTests.Mocks;
+using Kolisetka.Application.UnitTests.Properties;
 using Moq;
 using Shouldly;
 using System.Collections.Generic;
@@ -37,6 +38,11 @@ namespace Kolisetka.Application.UnitTests.Users.Queries
 
             result.Count.ShouldBe(2);
             result.ShouldBeOfType(typeof(List<UserGetDto>));
+            result[0].UserName.ShouldBe(Resources.Test_ValidUser_GetUserName);
+            result[0].Email.ShouldBe(Resources.Test_ValidUser_GetEmail);
+            result[0].EmailConfirmed.ShouldBeTrue();
+            result[0].FirstName.ShouldBe(Resources.Test_ValidUser_GetFirstName);
+            result[0].LastName.ShouldBe(Resources.Test_ValidUser_GetLastName);
         }
     }
 }

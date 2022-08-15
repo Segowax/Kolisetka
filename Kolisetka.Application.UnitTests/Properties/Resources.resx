@@ -147,8 +147,14 @@
   <data name="Test.ValidUser.GetEmail" xml:space="preserve">
     <value>user@localhost.com</value>
   </data>
+  <data name="Test.ValidUser.GetFirstName" xml:space="preserve">
+    <value>System</value>
+  </data>
   <data name="Test.ValidUser.GetId" xml:space="preserve">
     <value>0be5b79b-d566-4fb1-b9f7-9aa1115d889b</value>
+  </data>
+  <data name="Test.ValidUser.GetLastName" xml:space="preserve">
+    <value>User</value>
   </data>
   <data name="Test.ValidUser.GetUserName" xml:space="preserve">
     <value>user@localhost.com</value>

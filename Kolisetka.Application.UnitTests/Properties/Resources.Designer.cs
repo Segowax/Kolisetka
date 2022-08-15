@@ -151,11 +151,29 @@ namespace Kolisetka.Application.UnitTests.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu System.
+        /// </summary>
+        internal static string Test_ValidUser_GetFirstName {
+            get {
+                return ResourceManager.GetString("Test.ValidUser.GetFirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu 0be5b79b-d566-4fb1-b9f7-9aa1115d889b.
         /// </summary>
         internal static string Test_ValidUser_GetId {
             get {
                 return ResourceManager.GetString("Test.ValidUser.GetId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu User.
+        /// </summary>
+        internal static string Test_ValidUser_GetLastName {
+            get {
+                return ResourceManager.GetString("Test.ValidUser.GetLastName", resourceCulture);
             }
         }
         
