@@ -19,6 +19,7 @@ namespace Kolisetka.MVC
             #region User
             CreateMap<GetUserRequest, LoginVM>().ReverseMap();
             CreateMap<UserCreateDto, RegisterVM>().ReverseMap();
+            CreateMap<UserGetDto, UserGetVM>().ReverseMap();
             #endregion
         }
     }

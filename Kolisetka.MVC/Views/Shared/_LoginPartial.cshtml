@@ -9,7 +9,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <form class="form-inline" method="post" asp-action="Logout" asp-controller="User" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <form class="form-inline" method="post" asp-action="Logout" asp-controller="Auth" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                     <button type="submit" class="nav-link btn btn-link">
                         Logout
                     </button>
@@ -19,7 +19,7 @@
         else
         {
             <li class="nav-item">
-                <a class="nav-link" asp-action="Login" asp-controller="User">
+                <a class="nav-link" asp-action="Login" asp-controller="Auth">
                     Login
                 </a>
             </li>
