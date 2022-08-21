@@ -7,13 +7,11 @@ using Kolisetka.Domain;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using Kolisetka.Application.Responses;
-using System.Linq;
-using Kolisetka.Application.Properties;
+using Kolisetka.Application.Exceptions;
 
 namespace Kolisetka.Application.Features.Products.Handlers.Commands
 {
-    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, BaseCommandResponse>
+    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Unit>
     {
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
@@ -24,30 +22,18 @@ namespace Kolisetka.Application.Features.Products.Handlers.Commands
             _mapper = mapper;
         }
 
-        public async Task<BaseCommandResponse> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            var response = new BaseCommandResponse();
             var validator = new ProductCreateValidator();
             var validationResult = await validator.ValidateAsync(request.ProductCreateDto, cancellationToken);
 
             if (!validationResult.IsValid)
-            {
-                response.Success = false;
-                response.Message = Resources.Product_Creation_Failure;
-                response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).Distinct().ToList();
-
-                return response;
-            }
-            else
-            {
-                response.Success = true;
-                response.Message = Resources.Product_Creation_Success;
-            }
+                throw new ValidationException(validationResult);
 
             var product = _mapper.Map<ProductCreateDto, Product>(request.ProductCreateDto);
             await _productRepository.AddAsync(product);
 
-            return response;
+            return Unit.Value;
         }
     }
 }

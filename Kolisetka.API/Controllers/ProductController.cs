@@ -1,4 +1,6 @@
 ﻿using Kolisetka.Application.DTOs.DtoProduct;
+using Kolisetka.Application.Exceptions;
+using Kolisetka.Application.Exceptions.ExceptionObjects;
 using Kolisetka.Application.Features.Products.Requests.Commands;
 using Kolisetka.Application.Features.Products.Requests.Queries;
 using Kolisetka.Application.Responses;
@@ -26,7 +28,6 @@ namespace Kolisetka.API.Controllers
         // GET: api/<ProductController>
         [HttpGet]
         [ProducesResponseType(typeof(IReadOnlyList<ProductGetDto>), 200)]
-        [ProducesResponseType(204)]
         public async Task<ActionResult<IReadOnlyList<ProductGetDto>>> Get()
         {
             var products = await _mediator.Send(new GetProductsListRequest());
@@ -37,7 +38,6 @@ namespace Kolisetka.API.Controllers
         // GET api/<ProductController>/5
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(ProductGetDto), 200)]
-        [ProducesResponseType(204)]
         public async Task<ActionResult<ProductGetDto>> Get(int id)
         {
             var product = await _mediator.Send(new GetProductRequest { Id = id });
@@ -47,13 +47,25 @@ namespace Kolisetka.API.Controllers
 
         // POST api/<ProductController>
         [HttpPost]
-        [ProducesResponseType(typeof(BaseCommandResponse), 200)]
+        [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] ProductCreateDto product)
+        [ProducesResponseType(typeof(ValidationErrors), 422)]
+        public async Task<IActionResult> Post([FromBody] ProductCreateDto product)
         {
-            var response = await _mediator.Send(new CreateProductCommand { ProductCreateDto = product });
+            try
+            {
+                await _mediator.Send(new CreateProductCommand { ProductCreateDto = product });
+            }
+            catch (ValidationException ex)
+            {
+                return UnprocessableEntity(ex.ValidationErrors.Errors);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
 
-            return Ok(response);
+            return NoContent();
         }
 
         // PUT api/<ProductController>

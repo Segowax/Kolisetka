@@ -1,18 +1,18 @@
 ﻿using FluentValidation.Results;
+using Kolisetka.Application.Exceptions.ExceptionObjects;
 using System;
-using System.Collections.Generic;
 
 namespace Kolisetka.Application.Exceptions
 {
-    public class ValidationException : ApplicationException 
+    public class ValidationException : ApplicationException
     {
-        public List<string> Errors { get; set; } = new List<string>();
+        public ValidationErrors ValidationErrors { get; set; }
 
         public ValidationException(ValidationResult validationResult)
         {
             foreach (var error in validationResult.Errors)
             {
-                Errors.Add(error.ErrorMessage);
+                ValidationErrors.Errors.Add(error.ErrorMessage);
             }
         }
     }
