@@ -10,6 +10,7 @@ namespace Kolisetka.Application.Exceptions
 
         public ValidationException(ValidationResult validationResult)
         {
+            ValidationErrors = new();
             foreach (var error in validationResult.Errors)
             {
                 ValidationErrors.Errors.Add(error.ErrorMessage);
