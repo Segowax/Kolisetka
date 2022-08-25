@@ -28,7 +28,9 @@ namespace Kolisetka.API.Controllers
         }
 
         [HttpPost("register")]
+#if !DEBUGNOAUTH
         [Authorize(Roles = "Admin")]
+#endif
         public async Task<ActionResult<BaseCommandResponse>> Register(UserCreateDto command)
         {
             var response = await _mediator.Send(new CreateUserCommand() { UserCreateDto = command });

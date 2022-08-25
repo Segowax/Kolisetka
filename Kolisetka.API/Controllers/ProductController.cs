@@ -14,7 +14,9 @@ namespace Kolisetka.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+#if !DEBUGNOAUTH
     [Authorize]
+#endif
     [ProducesResponseType(401)]
     public class ProductController : ControllerBase
     {
@@ -81,13 +83,25 @@ namespace Kolisetka.API.Controllers
 
         // DELETE api/<ProductController>
         [HttpDelete]
-        [ProducesResponseType(typeof(BaseCommandResponse), 200)]
+        [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<BaseCommandResponse>> Delete(ProductDeleteDto product)
+        [ProducesResponseType(typeof(ValidationErrors), 422)]
+        public async Task<ActionResult> Delete(ProductDeleteDto product)
         {
-            var response = await _mediator.Send(new DeleteProductCommand { ProductDeleteDto = product });
+            try
+            {
+                await _mediator.Send(new DeleteProductCommand { ProductDeleteDto = product });
+            }
+            catch (ValidationException ex)
+            {
+                return UnprocessableEntity(ex.ValidationErrors.Errors);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
 
-            return Ok(response);
+            return NoContent();
         }
 
     }

@@ -4,15 +4,12 @@ using Kolisetka.Application.DTOs.DtoProduct;
 using Kolisetka.Application.Features.Products.Handlers.Commands;
 using Kolisetka.Application.Features.Products.Requests.Commands;
 using Kolisetka.Application.Profiles;
-using Kolisetka.Application.Responses;
 using Kolisetka.Application.UnitTests.Mocks;
 using Moq;
 using Shouldly;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
-
-using ApplicationProperties = Kolisetka.Application.Properties;
 
 namespace Kolisetka.Application.UnitTests.Products.Commands
 {
@@ -43,9 +40,8 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
         [Fact]
         public async Task Delete_Valid_Product_Test()
         {
-            var response = await _handler.Handle
+            await _handler.Handle
                 (new DeleteProductCommand() { ProductDeleteDto = _productDto }, CancellationToken.None);
-            response.Success.ShouldBeTrue();
 
             var products = await _mockRepo.Object.GetAllAsync();
             products.Count.ShouldBe(2);
@@ -56,13 +52,8 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             }
 
             // trying to delete the same id as previous one
-            response = await _handler.Handle
+            await _handler.Handle
                 (new DeleteProductCommand() { ProductDeleteDto = _productDto }, CancellationToken.None);
-            response.ShouldBeOfType<BaseCommandResponse>();
-            response.Success.ShouldBeFalse();
-            response.Errors.ShouldNotBeNull();
-            response.Errors.Count.ShouldBe(1);
-            response.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_NotExists.Replace("{PropertyName}", nameof(_productDto.Id)));
         }
 
         [Fact]
@@ -70,13 +61,8 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
         {
             // invalid Id
             _productDto.Id = 10;
-            var response = await _handler.Handle
+            await _handler.Handle
                 (new DeleteProductCommand() { ProductDeleteDto = _productDto }, CancellationToken.None);
-            response.ShouldBeOfType<BaseCommandResponse>();
-            response.Success.ShouldBeFalse();
-            response.Errors.ShouldNotBeNull();
-            response.Errors.Count.ShouldBe(1);
-            response.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_NotExists.Replace("{PropertyName}", nameof(_productDto.Id)));
 
             var products = await _mockRepo.Object.GetAllAsync();
             products.Count.ShouldBe(3);

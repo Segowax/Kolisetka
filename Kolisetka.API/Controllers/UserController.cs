@@ -10,7 +10,9 @@ namespace Kolisetka.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+#if !DEBUGNOAUTH
     [Authorize]
+#endif
     [ProducesResponseType(401)]
     public class UserController : ControllerBase
     {
