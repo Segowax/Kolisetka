@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using Kolisetka.Application.Contracts.Persistence;
 using Kolisetka.Application.DTOs.DtoProduct;
+using Kolisetka.Application.Exceptions;
 using Kolisetka.Application.Features.Products.Handlers.Commands;
 using Kolisetka.Application.Features.Products.Requests.Commands;
 using Kolisetka.Application.Profiles;
 using Kolisetka.Application.Responses;
 using Kolisetka.Application.UnitTests.Mocks;
 using Kolisetka.Domain;
+using MediatR;
 using Moq;
 using Shouldly;
 using System;
@@ -55,8 +57,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
         {
             var response = await _handler.Handle
                 (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
-            response.ShouldBeOfType<BaseCommandResponse>();
-            response.Success.ShouldBeTrue();
+            response.ShouldBeOfType<Unit>();
 
             var products = await _mockRepo.Object.GetAllAsync();
             products.Count.ShouldBe(3);
@@ -74,28 +75,27 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
         public async Task Update_Product_With_Invalid_Id_Test()
         {
             _productDto.Id = 5;
-            var response = await _handler.Handle
-                (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
-            response.ShouldBeOfType<BaseCommandResponse>();
-            response.Success.ShouldBeFalse();
-            response.Errors.ShouldNotBeNull();
-            response.Errors.Count.ShouldBe(1);
-            response.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_NotExists.Replace("{PropertyName}", nameof(_productDto.Id)));
+            var ex = await Should.ThrowAsync<ValidationException>
+                (async () => await _handler.Handle
+                    (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None));
+            ex.ValidationErrors.Errors.Count.ShouldBe(1);
+            ex.ValidationErrors.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_NotExists
+                .Replace("{PropertyName}", nameof(UpdateProductCommand.ProductUpdateDto.Id)));
 
             var products = await _mockRepo.Object.GetAllAsync();
             products.Count.ShouldBe(3);
         }
+
         [Fact]
         public async Task Update_Product_With_Invalid_Category_Test()
         {
             _productDto.Category = (Category)3;
-            var response = await _handler.Handle
-                (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
-            response.ShouldBeOfType<BaseCommandResponse>();
-            response.Success.ShouldBeFalse();
-            response.Errors.ShouldNotBeNull();
-            response.Errors.Count.ShouldBe(1);
-            response.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_InvalidEnum.Replace("{PropertyName}", nameof(_productDto.Category)));
+            var ex = await Should.ThrowAsync<ValidationException>
+                (async () => await _handler.Handle
+                    (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None));
+            ex.ValidationErrors.Errors.Count.ShouldBe(1);
+            ex.ValidationErrors.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_InvalidEnum
+                .Replace("{PropertyName}", nameof(UpdateProductCommand.ProductUpdateDto.Category)));
 
             var products = await _mockRepo.Object.GetAllAsync();
             products.Count.ShouldBe(3);
@@ -104,24 +104,23 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
         [Fact]
         public async Task Update_Product_With_Invalid_Description_Test()
         {
-            // invalid description - null
             _productDto.Description = null;
-            var response = await _handler.Handle
-                (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
-            response.ShouldBeOfType<BaseCommandResponse>();
-            response.Success.ShouldBeFalse();
-            MyString = ApplicationProperties.Resources.Product_Validator_Required.Replace("{PropertyName}", nameof(_productDto.Description));
-            response.Errors[0].ShouldBe(MyString);
+            var ex = await Should.ThrowAsync<ValidationException>
+                (async () => await _handler.Handle
+                    (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None));
+            ex.ValidationErrors.Errors.Count.ShouldBe(1);
+            // MyString = ApplicationProperties.Resources.Product_Validator_Required.Replace("{PropertyName}", nameof(_productDto.Description));
+            ex.ValidationErrors.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_Required
+                .Replace("{PropertyName}", nameof(UpdateProductCommand.ProductUpdateDto.Description)));
 
             // invalid description - too long
             _productDto.Description = TestProperties.Resources.Test_TooLongString_1001;
-            response = await _handler.Handle
-                (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
-            response.ShouldBeOfType<BaseCommandResponse>();
-            response.Success.ShouldBeFalse();
+            ex = await Should.ThrowAsync<ValidationException>
+                (async () => await _handler.Handle
+                    (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None));
+            ex.ValidationErrors.Errors.Count.ShouldBe(1);
             MyString = ApplicationProperties.Resources.Product_Validator_TooLong.Replace("{PropertyName}", nameof(_productDto.Description));
             MyString = MyString.Replace("{MaxLength}", "1000");
-            response.Errors[0].ShouldBe(MyString);
 
             var products = await _mockRepo.Object.GetAllAsync();
             products.Count.ShouldBe(3);
@@ -135,23 +134,15 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             var response = await _handler.Handle
                 (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
             response.ShouldBeOfType<BaseCommandResponse>();
-            response.Success.ShouldBeFalse();
-            response.Errors.ShouldNotBeNull();
-            response.Errors.Count.ShouldBe(1);
             MyString = ApplicationProperties.Resources.Product_Validator_Required.Replace("{PropertyName}", nameof(_productDto.Name));
-            response.Errors[0].ShouldBe(MyString);
 
             // invalid name - too long
             _productDto.Name = TestProperties.Resources.Test_TooLongString_101;
             response = await _handler.Handle
                 (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
             response.ShouldBeOfType<BaseCommandResponse>();
-            response.Success.ShouldBeFalse();
-            response.Errors.ShouldNotBeNull();
-            response.Errors.Count.ShouldBe(1);
             MyString = ApplicationProperties.Resources.Product_Validator_TooLong.Replace("{PropertyName}", nameof(_productDto.Name));
             MyString = MyString.Replace("{MaxLength}", "100");
-            response.Errors[0].ShouldBe(MyString);
 
             var products = await _mockRepo.Object.GetAllAsync();
             products.Count.ShouldBe(3);
@@ -164,10 +155,6 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             var response = await _handler.Handle
                 (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
             response.ShouldBeOfType<BaseCommandResponse>();
-            response.Success.ShouldBeFalse();
-            response.Errors.ShouldNotBeNull();
-            response.Errors.Count.ShouldBe(1);
-            response.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_InvalidPrecision.Replace("{PropertyName}", nameof(_productDto.Price)));
 
             var products = await _mockRepo.Object.GetAllAsync();
             products.Count.ShouldBe(3);

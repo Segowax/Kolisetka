@@ -72,13 +72,25 @@ namespace Kolisetka.API.Controllers
 
         // PUT api/<ProductController>
         [HttpPut]
-        [ProducesResponseType(typeof(BaseCommandResponse), 200)]
+        [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<BaseCommandResponse>> Put([FromBody] ProductUpdateDto product)
+        [ProducesResponseType(typeof(ValidationErrors), 422)]
+        public async Task<IActionResult> Put([FromBody] ProductUpdateDto product)
         {
-            var response = await _mediator.Send(new UpdateProductCommand { ProductUpdateDto = product });
+            try
+            {
+                var response = await _mediator.Send(new UpdateProductCommand { ProductUpdateDto = product });
+            }
+            catch(ValidationException ex)
+            {
+                return UnprocessableEntity(ex.ValidationErrors.Errors);
+            }
+            catch(Exception)
+            {
+                return BadRequest();
+            }
 
-            return Ok(response);
+            return NoContent();
         }
 
         // DELETE api/<ProductController>
