@@ -14,7 +14,8 @@ namespace Kolisetka.Application.Validators
             _productRepository = productRepository;
 
             RuleFor(prop => prop.Id)
-                .GreaterThan(0)
+                .Cascade(CascadeMode.Stop)
+                .GreaterThan(0).WithMessage(Resources.Product_Validator_GreaterThan0)
                 .MustAsync(async (id, token) =>
                 {
                     return await _productRepository.IsExist(id);

@@ -14,6 +14,7 @@ namespace Kolisetka.Application.Validators
             _productRepository = productRepository;
 
             RuleFor(prop => prop.Id)
+                .Cascade(CascadeMode.Stop)
                 .GreaterThan(0).WithMessage(Resources.Product_Validator_NotExists)
                 .MustAsync(async (id, token) =>
                 {
@@ -25,18 +26,18 @@ namespace Kolisetka.Application.Validators
                 .IsInEnum().WithMessage(Resources.Product_Validator_InvalidEnum);
 
             RuleFor(prop => prop.Description)
+                .Cascade(CascadeMode.Stop)
                 .NotEmpty().WithMessage(Resources.Product_Validator_Required)
                 .NotNull().WithMessage(Resources.Product_Validator_Required)
                 .MaximumLength(1000).WithMessage(Resources.Product_Validator_TooLong);
 
             RuleFor(prop => prop.Name)
+                .Cascade(CascadeMode.Stop)
                 .NotEmpty().WithMessage(Resources.Product_Validator_Required)
                 .NotNull().WithMessage(Resources.Product_Validator_Required)
                 .MaximumLength(100).WithMessage(Resources.Product_Validator_TooLong);
 
             RuleFor(prop => prop.Price)
-                .NotEmpty().WithMessage(Resources.Product_Validator_Required)
-                .NotNull().WithMessage(Resources.Product_Validator_Required)
                 .GreaterThan(0).WithMessage(Resources.Product_Validator_GreaterThan0)
                 .ScalePrecision(2, 7).WithMessage(Resources.Product_Validator_InvalidPrecision);
         }

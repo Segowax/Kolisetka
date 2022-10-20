@@ -89,6 +89,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
         [Fact]
         public async Task Update_Product_With_Invalid_Category_Test()
         {
+            // invalid category - not exists
             _productDto.Category = (Category)3;
             var ex = await Should.ThrowAsync<ValidationException>
                 (async () => await _handler.Handle
@@ -109,7 +110,6 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
                 (async () => await _handler.Handle
                     (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None));
             ex.ValidationErrors.Errors.Count.ShouldBe(1);
-            // MyString = ApplicationProperties.Resources.Product_Validator_Required.Replace("{PropertyName}", nameof(_productDto.Description));
             ex.ValidationErrors.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_Required
                 .Replace("{PropertyName}", nameof(UpdateProductCommand.ProductUpdateDto.Description)));
 
@@ -119,8 +119,9 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
                 (async () => await _handler.Handle
                     (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None));
             ex.ValidationErrors.Errors.Count.ShouldBe(1);
-            MyString = ApplicationProperties.Resources.Product_Validator_TooLong.Replace("{PropertyName}", nameof(_productDto.Description));
-            MyString = MyString.Replace("{MaxLength}", "1000");
+            ex.ValidationErrors.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_TooLong
+                .Replace("{PropertyName}", nameof(_productDto.Description))
+                .Replace("{MaxLength}", "1000"));
 
             var products = await _mockRepo.Object.GetAllAsync();
             products.Count.ShouldBe(3);
@@ -131,30 +132,47 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
         {
             // invalid name - null
             _productDto.Name = null;
-            var response = await _handler.Handle
-                (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
-            response.ShouldBeOfType<BaseCommandResponse>();
-            MyString = ApplicationProperties.Resources.Product_Validator_Required.Replace("{PropertyName}", nameof(_productDto.Name));
+            var ex = await Should.ThrowAsync<ValidationException>
+                (async () => await _handler.Handle
+                    (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None));
+            ex.ValidationErrors.Errors.Count.ShouldBe(1);
+            ex.ValidationErrors.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_Required
+                .Replace("{PropertyName}", nameof(_productDto.Name)));
 
             // invalid name - too long
             _productDto.Name = TestProperties.Resources.Test_TooLongString_101;
-            response = await _handler.Handle
-                (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
-            response.ShouldBeOfType<BaseCommandResponse>();
-            MyString = ApplicationProperties.Resources.Product_Validator_TooLong.Replace("{PropertyName}", nameof(_productDto.Name));
-            MyString = MyString.Replace("{MaxLength}", "100");
+            ex = await Should.ThrowAsync<ValidationException>
+                (async () => await _handler.Handle
+                    (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None));
+            ex.ValidationErrors.Errors.Count.ShouldBe(1);
+            ex.ValidationErrors.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_TooLong
+                .Replace("{PropertyName}", nameof(_productDto.Name))
+                .Replace("{MaxLength}", "100"));
 
             var products = await _mockRepo.Object.GetAllAsync();
             products.Count.ShouldBe(3);
         }
 
         [Fact]
-        public async Task Update_Product_With_Invalid_Price_Tes()
+        public async Task Update_Product_With_Invalid_Price_Test()
         {
+            // invalid price - 0
+            _productDto.Price = 0;
+            var ex = await Should.ThrowAsync<ValidationException>
+                (async () => await _handler.Handle
+                    (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None));
+            ex.ValidationErrors.Errors.Count.ShouldBe(1);
+            ex.ValidationErrors.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_GreaterThan0
+                .Replace("{PropertyName}", nameof(_productDto.Price)));
+
+            // invalid price - precision
             _productDto.Price = 10.002m;
-            var response = await _handler.Handle
-                (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None);
-            response.ShouldBeOfType<BaseCommandResponse>();
+            ex = await Should.ThrowAsync<ValidationException>
+                (async () => await _handler.Handle
+                    (new UpdateProductCommand() { ProductUpdateDto = _productDto }, CancellationToken.None));
+            ex.ValidationErrors.Errors.Count.ShouldBe(1);
+            ex.ValidationErrors.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_InvalidPrecision
+                .Replace("{PropertyName}", nameof(_productDto.Price)));
 
             var products = await _mockRepo.Object.GetAllAsync();
             products.Count.ShouldBe(3);
