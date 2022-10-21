@@ -16,7 +16,7 @@ namespace Kolisetka.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Apply all configurations and data seeding! I wonder whether I can assemly each separately.
+            // Apply all configurations and data seeding! I wonder whether I can assembly each separately.
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(KolisetkaDbContext).Assembly);
         }
 

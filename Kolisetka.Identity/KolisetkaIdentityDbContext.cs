@@ -1,5 +1,4 @@
 ﻿using Kolisetka.Domain.Models;
-using Kolisetka.Identity.Configurations;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,9 +13,8 @@ namespace Kolisetka.Identity
         {
             base.OnModelCreating(builder);
 
-            builder.ApplyConfiguration(new RoleConfiguration());
-            builder.ApplyConfiguration(new UserConfiguration());
-            builder.ApplyConfiguration(new UserRoleConfiguration());
+            // Apply all configurations and data seeding! I wonder whether I can assembly each separately.
+            builder.ApplyConfigurationsFromAssembly(typeof(KolisetkaIdentityDbContext).Assembly);
         }
     }
 }

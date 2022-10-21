@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Kolisetka.Identity.Configurations
+namespace Kolisetka.Identity.DataSeed
 {
-    public class UserConfiguration : IEntityTypeConfiguration<User>
+    public class UserSeed : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {

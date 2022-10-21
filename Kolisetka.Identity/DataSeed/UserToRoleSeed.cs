@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Kolisetka.Identity.Configurations
+namespace Kolisetka.Identity.DataSeed
 {
-    public class UserRoleConfiguration : IEntityTypeConfiguration<IdentityUserRole<string>>
+    public class UserToRoleSeed : IEntityTypeConfiguration<IdentityUserRole<string>>
     {
         public void Configure(EntityTypeBuilder<IdentityUserRole<string>> builder)
         {
