@@ -73,8 +73,8 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
                 (async () => await _handler.Handle
                     (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None));
 
-            ex.ValidationErrors.Errors.Count.ShouldBe(1);
-            ex.ValidationErrors.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_InvalidPrecision
+            ex.Errors.Count.ShouldBe(1);
+            ex.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_InvalidPrecision
                 .Replace("{PropertyName}", nameof(CreateProductCommand.ProductCreateDto.Price)));
 
             var products = await _mockRepo.Object.GetAllAsync();
@@ -90,7 +90,7 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
                 (async () => await _handler.Handle
                     (new CreateProductCommand() { ProductCreateDto = _productDto }, CancellationToken.None));
 
-            ex.ValidationErrors.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_InvalidEnum
+            ex.Errors[0].ShouldBe(ApplicationProperties.Resources.Product_Validator_InvalidEnum
                 .Replace("{PropertyName}", nameof(CreateProductCommand.ProductCreateDto.Category)));
 
             var products = await _mockRepo.Object.GetAllAsync();

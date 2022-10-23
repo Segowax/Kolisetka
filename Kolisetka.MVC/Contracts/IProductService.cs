@@ -7,8 +7,8 @@ namespace Kolisetka.MVC.Contracts
     {
         Task<List<ProductGetVM>> GetProducts();
         Task<ProductGetVM> GetProductDetails(int id);
-        Task<Response<int>> CreateProduct(ProductCreateVM product);
-        Task<Response<int>> UpdateProduct(ProductUpdateVM product);
-        Task<Response<int>> DeleteProduct(ProductDeleteVM product);
+        Task<Response> CreateProduct(ProductCreateVM product);
+        Task<Response> UpdateProduct(ProductUpdateVM product);
+        Task<Response> DeleteProduct(ProductDeleteVM product);
     }
 }

@@ -13,7 +13,7 @@ namespace Kolisetka.Identity
         {
             base.OnModelCreating(builder);
 
-            // Apply all configurations and data seeding! I wonder whether I can assembly each separately.
+            // Apply all configurations and data seeding!
             builder.ApplyConfigurationsFromAssembly(typeof(KolisetkaIdentityDbContext).Assembly);
         }
     }

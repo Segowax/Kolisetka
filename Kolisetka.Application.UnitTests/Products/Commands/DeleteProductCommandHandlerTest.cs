@@ -65,16 +65,16 @@ namespace Kolisetka.Application.UnitTests.Products.Commands
             _productDto.Id = 10;
             var ex = await Should.ThrowAsync<ValidationException>(async () => await _handler
                 .Handle(new DeleteProductCommand() { ProductDeleteDto = _productDto }, CancellationToken.None));
-            ex.ValidationErrors.Errors.Count.ShouldBe(1);
-            ex.ValidationErrors.Errors[0].ShouldBe(Resources.Product_Validator_NotExists
+            ex.Errors.Count.ShouldBe(1);
+            ex.Errors[0].ShouldBe(Resources.Product_Validator_NotExists
                 .Replace("{PropertyName}", nameof(_productDto.Id)));
 
             // invalid Id - 0
             _productDto.Id = 0;
             ex = await Should.ThrowAsync<ValidationException>(async () => await _handler
                 .Handle(new DeleteProductCommand() { ProductDeleteDto = _productDto }, CancellationToken.None));
-            ex.ValidationErrors.Errors.Count.ShouldBe(1);
-            ex.ValidationErrors.Errors[0].ShouldBe(Resources.Product_Validator_GreaterThan0
+            ex.Errors.Count.ShouldBe(1);
+            ex.Errors[0].ShouldBe(Resources.Product_Validator_GreaterThan0
                 .Replace("{PropertyName}", nameof(_productDto.Id)));
 
             var products = await _mockRepo.Object.GetAllAsync();

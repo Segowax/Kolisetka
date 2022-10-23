@@ -1,6 +1,5 @@
 ﻿using Kolisetka.Domain;
 using Kolisetka.Domain.Common;
-using Kolisetka.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading;
@@ -16,7 +15,7 @@ namespace Kolisetka.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Apply all configurations and data seeding! I wonder whether I can assembly each separately.
+            // Apply all configurations and data seeding!
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(KolisetkaDbContext).Assembly);
         }
 

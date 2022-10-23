@@ -1,11 +1,8 @@
 ﻿using Kolisetka.Application.DTOs.DtoProduct;
 using Kolisetka.Application.Exceptions;
-using Kolisetka.Application.Exceptions.ExceptionObjects;
 using Kolisetka.Application.Features.Products.Requests.Commands;
 using Kolisetka.Application.Features.Products.Requests.Queries;
-using Kolisetka.Application.Responses;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -51,7 +48,7 @@ namespace Kolisetka.API.Controllers
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        [ProducesResponseType(typeof(ValidationErrors), 422)]
+        [ProducesResponseType(typeof(List<string>), 422)]
         public async Task<IActionResult> Post([FromBody] ProductCreateDto product)
         {
             try
@@ -60,7 +57,7 @@ namespace Kolisetka.API.Controllers
             }
             catch (ValidationException ex)
             {
-                return UnprocessableEntity(ex.ValidationErrors.Errors);
+                return UnprocessableEntity(ex.Errors);
             }
             catch (Exception)
             {
@@ -74,7 +71,7 @@ namespace Kolisetka.API.Controllers
         [HttpPut]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        [ProducesResponseType(typeof(ValidationErrors), 422)]
+        [ProducesResponseType(typeof(List<string>), 422)]
         public async Task<IActionResult> Put([FromBody] ProductUpdateDto product)
         {
             try
@@ -83,7 +80,7 @@ namespace Kolisetka.API.Controllers
             }
             catch(ValidationException ex)
             {
-                return UnprocessableEntity(ex.ValidationErrors.Errors);
+                return UnprocessableEntity(ex.Errors);
             }
             catch(Exception)
             {
@@ -97,7 +94,7 @@ namespace Kolisetka.API.Controllers
         [HttpDelete]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        [ProducesResponseType(typeof(ValidationErrors), 422)]
+        [ProducesResponseType(typeof(List<string>), 422)]
         public async Task<ActionResult> Delete(ProductDeleteDto product)
         {
             try
@@ -106,7 +103,7 @@ namespace Kolisetka.API.Controllers
             }
             catch (ValidationException ex)
             {
-                return UnprocessableEntity(ex.ValidationErrors.Errors);
+                return UnprocessableEntity(ex.Errors);
             }
             catch (Exception ex)
             {

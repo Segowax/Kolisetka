@@ -19,52 +19,42 @@ namespace Kolisetka.MVC.Services
             _client = client;
         }
 
-        public async Task<Response<int>> CreateProduct(ProductCreateVM product)
+        public async Task<Response> CreateProduct(ProductCreateVM product)
         {
             try
             {
                 AddBearerToken();
-                var response = new Response<int>();
                 var productToAdd = _mapper.Map<ProductCreateDto>(product);
-                var apiResponse = await _client.ProductPOSTAsync(productToAdd);
-                if (apiResponse.Success)
-                    response.Success = true;
-                else
-                    foreach (var error in apiResponse.Errors)
-                    {
-                        response.ValidationError += error + Environment.NewLine;
-                    }
+                await _client.ProductPOSTAsync(productToAdd);
 
-                return response;
+                return new Response() 
+                { 
+                    Success = true
+                };
             }
             catch (ApiException ex)
             {
-                return ConvertApiExceptions<int>(ex);
+                return ConvertApiExceptions(ex);
             }
         }
 
-        public async Task<Response<int>> DeleteProduct(ProductDeleteVM product)
+        public async Task<Response> DeleteProduct(ProductDeleteVM product)
         {
             try
             {
                 AddBearerToken();
-                var response = new Response<int>();
                 var productToDelete = _mapper.Map<ProductDeleteDto>(product);
-                var apiResponse = await _client.ProductDELETEAsync(productToDelete);
-                if (apiResponse.Success)
-                    response.Success = true;
-                else
-                    foreach (var error in apiResponse.Errors)
-                    {
-                        response.ValidationError += error + Environment.NewLine;
-                    }
+                await _client.ProductDELETEAsync(productToDelete);
 
-                return response;
+                return new Response()
+                {
+                    Success = true
+                };
             }
             catch (ApiException ex)
             {
 
-                return ConvertApiExceptions<int>(ex);
+                return ConvertApiExceptions(ex);
             }
         }
 
@@ -84,27 +74,22 @@ namespace Kolisetka.MVC.Services
             return _mapper.Map<List<ProductGetVM>>(products);
         }
 
-        public async Task<Response<int>> UpdateProduct(ProductUpdateVM product)
+        public async Task<Response> UpdateProduct(ProductUpdateVM product)
         {
             try
             {
                 AddBearerToken();
-                var response = new Response<int>();
                 var productToUpdate = _mapper.Map<ProductUpdateDto>(product);
-                var apiResponse = await _client.ProductPUTAsync(productToUpdate);
-                if (apiResponse.Success)
-                    response.Success = true;
-                else
-                    foreach (var error in apiResponse.Errors)
-                    {
-                        response.ValidationError += error + Environment.NewLine;
-                    }
+                await _client.ProductPUTAsync(productToUpdate);
 
-                return response;
+                return new Response()
+                {
+                    Success = true
+                };
             }
             catch (ApiException ex)
             {
-                return ConvertApiExceptions<int>(ex);
+                return ConvertApiExceptions(ex);
             }
         }
     }
